@@ -1,0 +1,124 @@
+[
+  {
+    "interface": "Custom",
+    "id": "JEEubEX2wMjV3h7DnBDN4wVQHLzvc7MbRCFN3eoNLdza",
+    "content": {
+      "$schema": "https://schema.metaplex.com/nft1.0.json",
+      "json_uri": "https://famousfoxes.com/tmetadata/6221.json",
+      "files": [
+        {
+          "uri": "https://famousfoxes.com/tff/6221.png",
+          "cdn_uri": "https://cdn.helius-rpc.com/cdn-cgi/image//https://famousfoxes.com/tff/6221.png",
+          "mime": "image/png"
+        }
+      ],
+      "metadata": {
+        "attributes": [
+          {
+            "value": "Green",
+            "trait_type": "Background"
+          },
+          {
+            "value": "Hoodie Light",
+            "trait_type": "Outfit"
+          },
+          {
+            "value": "Natural",
+            "trait_type": "Skin"
+          },
+          {
+            "value": "Blep",
+            "trait_type": "Mouth"
+          },
+          {
+            "value": "Afro",
+            "trait_type": "Head"
+          },
+          {
+            "value": "Eye Patch",
+            "trait_type": "Eyes"
+          },
+          {
+            "value": 1,
+            "trait_type": "Head Tier"
+          },
+          {
+            "value": 1,
+            "trait_type": "Outfit Tier"
+          }
+        ],
+        "description": "A series of wormholes have ripped a hole in the spacetime continuum, and thousands of pixelated Foxes from a parallel universe have made their way through.",
+        "name": "Fox #6221",
+        "symbol": "TFF"
+      },
+      "links": {
+        "image": "https://famousfoxes.com/tff/6221.png",
+        "external_url": "https://famousfoxes.com"
+      }
+    },
+    "authorities": [
+      {
+        "address": "MwW2RfWAfGrKmh9QAkDELdEV7Ue39FoP885dhuHmqr9",
+        "scopes": [
+          "full"
+        ]
+      }
+    ],
+    "compression": {
+      "eligible": false,
+      "compressed": false,
+      "data_hash": "",
+      "creator_hash": "",
+      "asset_hash": "",
+      "tree": "",
+      "seq": 0,
+      "leaf_id": 0
+    },
+    "grouping": [
+      {
+        "group_key": "collection",
+        "group_value": "HbPtffcEzzSzZ1VJaTjaAJqTUQpfNeMkPqNG81dWE2Bi"
+      }
+    ],
+    "royalty": {
+      "royalty_model": "creators",
+      "target": null,
+      "percent": 0.042,
+      "basis_points": 420,
+      "primary_sale_happened": true,
+      "locked": false
+    },
+    "creators": [
+      {
+        "address": "GFQBHxuNcAwYwHtEpggMwbH5kwV6Ne4JowHbLVfsMC6C",
+        "share": 0,
+        "verified": true
+      },
+      {
+        "address": "MwW2RfWAfGrKmh9QAkDELdEV7Ue39FoP885dhuHmqr9",
+        "share": 100,
+        "verified": true
+      }
+    ],
+    "ownership": {
+      "frozen": true,
+      "delegated": true,
+      "delegate": "Nk3BXwsW5X3n6Lb2kVi6j5XL59SzJd4W141s9LPn7no",
+      "ownership_model": "single",
+      "owner": "3ufE8ZossNvypfLHuvbYMGyrAwKk7CUShTFqfpkjsCFB"
+    },
+    "supply": {
+      "print_max_supply": 0,
+      "print_current_supply": 0,
+      "edition_nonce": 255
+    },
+    "mutable": true,
+    "burnt": false,
+    "token_info": {
+      "supply": 1,
+      "decimals": 0,
+      "token_program": "TokenkegQfeZyiNwAJbNbGKPFXCWuBvf9Ss623VQ5DA",
+      "associated_token_address": "BrAKFvFe5JcGcoMyz7BKxwib4C6dSpBrE8zmTSdpN1tE"
+    }
+  }
+]

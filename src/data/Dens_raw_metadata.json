@@ -1,0 +1,141 @@
+[
+  {
+    "interface": "Custom",
+    "id": "JDyu5Ju6DDbYQ6cdKxNPJHgdnnynBwFeb4acCyYvvtES",
+    "content": {
+      "$schema": "https://schema.metaplex.com/nft1.0.json",
+      "json_uri": "https://dens.famousfoxes.com/metadata/1092.json",
+      "files": [
+        {
+          "uri": "https://dens.famousfoxes.com/images/exterior1092.png",
+          "cdn_uri": "https://cdn.helius-rpc.com/cdn-cgi/image//https://dens.famousfoxes.com/images/exterior1092.png",
+          "mime": "image/png"
+        },
+        {
+          "uri": "https://dens.famousfoxes.com/images/interior1092.png",
+          "cdn_uri": "https://cdn.helius-rpc.com/cdn-cgi/image//https://dens.famousfoxes.com/images/interior1092.png",
+          "mime": "image/png"
+        }
+      ],
+      "metadata": {
+        "attributes": [
+          {
+            "value": "Beach",
+            "trait_type": "Exterior"
+          },
+          {
+            "value": "Beach",
+            "trait_type": "Interior 1"
+          },
+          {
+            "value": "None",
+            "trait_type": "Interior 2"
+          },
+          {
+            "value": "None",
+            "trait_type": "Interior 3"
+          },
+          {
+            "value": "None",
+            "trait_type": "Interior 4"
+          },
+          {
+            "value": "Santa Hat",
+            "trait_type": "Object 1"
+          },
+          {
+            "value": "Common",
+            "trait_type": "Rarity"
+          },
+          {
+            "value": "Rio de Foxeiro",
+            "trait_type": "Location"
+          },
+          {
+            "value": "Praia das Reposas",
+            "trait_type": "Sublocation"
+          },
+          {
+            "value": "REP609",
+            "trait_type": "Name"
+          },
+          {
+            "value": 120,
+            "trait_type": "Score"
+          }
+        ],
+        "description": "Experience the diversity of the Foxosphere's real estate. 3000 Dens for your Foxes to call home, and display your vast art collection.",
+        "name": "Den #1092",
+        "symbol": "FFD"
+      },
+      "links": {
+        "external_url": "https://famousfoxes.com/",
+        "image": "https://dens.famousfoxes.com/images/exterior1092.png"
+      }
+    },
+    "authorities": [
+      {
+        "address": "3vedckD9AnCNp7vEEnTUzVK6bWHEQgSpPRB7A5aS67kj",
+        "scopes": [
+          "full"
+        ]
+      }
+    ],
+    "compression": {
+      "eligible": false,
+      "compressed": false,
+      "data_hash": "",
+      "creator_hash": "",
+      "asset_hash": "",
+      "tree": "",
+      "seq": 0,
+      "leaf_id": 0
+    },
+    "grouping": [
+      {
+        "group_key": "collection",
+        "group_value": "EHk5rVJz4NYRFvddC5hFbceJJjF58TmLEVas27JS77kn"
+      }
+    ],
+    "royalty": {
+      "royalty_model": "creators",
+      "target": null,
+      "percent": 0.069,
+      "basis_points": 690,
+      "primary_sale_happened": true,
+      "locked": false
+    },
+    "creators": [
+      {
+        "address": "Ai8zx1jocBVtejc68swEYCK6r7DKpNwT8VcHec35jrWc",
+        "share": 0,
+        "verified": true
+      },
+      {
+        "address": "3vedckD9AnCNp7vEEnTUzVK6bWHEQgSpPRB7A5aS67kj",
+        "share": 100,
+        "verified": true
+      }
+    ],
+    "ownership": {
+      "frozen": false,
+      "delegated": false,
+      "delegate": null,
+      "ownership_model": "single",
+      "owner": "DdD7kT8YJ5oUr1i7skDUfVNqd1qfTFV3hPcEUQhJV9Va"
+    },
+    "supply": {
+      "print_max_supply": 0,
+      "print_current_supply": 0,
+      "edition_nonce": 255
+    },
+    "mutable": true,
+    "burnt": false,
+    "token_info": {
+      "supply": 1,
+      "decimals": 0,
+      "token_program": "TokenkegQfeZyiNwAJbNbGKPFXCWuBvf9Ss623VQ5DA",
+      "associated_token_address": "JDe8aUC44dAYQQXnuB7F7Fm5Njtk84jL5QiA9p4h5Art"
+    }
+  }
+]

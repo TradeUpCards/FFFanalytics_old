@@ -1,0 +1,116 @@
+[
+  {
+    "interface": "Custom",
+    "id": "JEH7cJxAKdprFG5AvdsY2c4ZqojxLBjFmw19zADV6oK5",
+    "content": {
+      "$schema": "https://schema.metaplex.com/nft1.0.json",
+      "json_uri": "https://famousfoxes.com/metadata/7045.json",
+      "files": [
+        {
+          "uri": "https://famousfoxes.com/hd/7045.png",
+          "cdn_uri": "https://cdn.helius-rpc.com/cdn-cgi/image//https://famousfoxes.com/hd/7045.png",
+          "mime": "image/png"
+        }
+      ],
+      "metadata": {
+        "attributes": [
+          {
+            "value": "Amaranth",
+            "trait_type": "Background"
+          },
+          {
+            "value": "Hoodie Green",
+            "trait_type": "Outfit"
+          },
+          {
+            "value": "Natural",
+            "trait_type": "Skin"
+          },
+          {
+            "value": "Smile",
+            "trait_type": "Mouth"
+          },
+          {
+            "value": "None",
+            "trait_type": "Head"
+          },
+          {
+            "value": "Blank",
+            "trait_type": "Eyes"
+          }
+        ],
+        "description": "The Famous Fox Federation, an independent organization of the most fabulously famous foxes on the Blockchain.",
+        "name": "Fox #7045",
+        "symbol": "FFF"
+      },
+      "links": {
+        "image": "https://famousfoxes.com/hd/7045.png",
+        "external_url": "https://famousfoxes.com"
+      }
+    },
+    "authorities": [
+      {
+        "address": "3pMvTLUA9NzZQd4gi725p89mvND1wRNQM3C8XEv1hTdA",
+        "scopes": [
+          "full"
+        ]
+      }
+    ],
+    "compression": {
+      "eligible": false,
+      "compressed": false,
+      "data_hash": "",
+      "creator_hash": "",
+      "asset_hash": "",
+      "tree": "",
+      "seq": 0,
+      "leaf_id": 0
+    },
+    "grouping": [
+      {
+        "group_key": "collection",
+        "group_value": "BUjZjAS2vbbb65g7Z1Ca9ZRVYoJscURG5L3AkVvHP9ac"
+      }
+    ],
+    "royalty": {
+      "royalty_model": "creators",
+      "target": null,
+      "percent": 0.042,
+      "basis_points": 420,
+      "primary_sale_happened": true,
+      "locked": false
+    },
+    "creators": [
+      {
+        "address": "D3XrkNZz6wx6cofot7Zohsf2KSsu2ArngNk8VqU9cTY3",
+        "share": 0,
+        "verified": true
+      },
+      {
+        "address": "3pMvTLUA9NzZQd4gi725p89mvND1wRNQM3C8XEv1hTdA",
+        "share": 100,
+        "verified": true
+      }
+    ],
+    "ownership": {
+      "frozen": true,
+      "delegated": true,
+      "delegate": "8x6JdhQQZhGCnAAGLstyodx8sArbtZHNcy736zN31D8V",
+      "ownership_model": "single",
+      "owner": "3ZxvgtSZXeDTfZNBq6Awi7xsCLXcP95ZSDHt51SKgypX"
+    },
+    "supply": {
+      "print_max_supply": 0,
+      "print_current_supply": 0,
+      "edition_nonce": 255
+    },
+    "mutable": true,
+    "burnt": false,
+    "token_info": {
+      "supply": 1,
+      "decimals": 0,
+      "token_program": "TokenkegQfeZyiNwAJbNbGKPFXCWuBvf9Ss623VQ5DA",
+      "associated_token_address": "F7QSQPgRthVUfm4fNctXac2oygWfWsmLav2VGRw2XBWu"
+    }
+  }
+]

@@ -1,27 +1,38 @@
 {
   "name": "fffanalytics",
   "version": "0.1.0",
+  "type": "module",
   "private": true,
   "scripts": {
     "kill": "taskkill /f /im node.exe",
     "dev": "next dev",
     "build": "next build",
     "start": "next start",
-    "lint": "next lint"
+    "lint": "next lint",
+    "tsc:scripts": "tsc -p tsconfig.scripts.json",
+    "fetch-data": "npm run tsc:scripts && node dist/scripts/fetchCollectionData.js"
   },
   "dependencies": {
+    "@supabase/supabase-js": "^2.45.0",
+    "csv-parser": "^3.0.0",
+    "dotenv": "^16.4.5",
+    "json2csv": "^6.0.0-alpha.2",
+    "next": "14.2.5",
+    "node-fetch": "^3.3.2",
     "react": "^18",
     "react-dom": "^18",
-    "next": "14.2.5"
+    "xlsx": "^0.18.5"
   },
   "devDependencies": {
-    "typescript": "^5",
-    "@types/node": "^20",
+    "@types/json2csv": "^5.0.7",
+    "@types/node": "^20.14.13",
     "@types/react": "^18",
     "@types/react-dom": "^18",
+    "eslint": "^8",
+    "eslint-config-next": "14.2.5",
     "postcss": "^8",
     "tailwindcss": "^3.4.1",
-    "eslint": "^8",
-    "eslint-config-next": "14.2.5"
+    "ts-node": "^10.9.2",
+    "typescript": "^5.5.4"
   }
 }
