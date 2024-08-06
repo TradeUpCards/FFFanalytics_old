@@ -10,7 +10,9 @@
     "start": "next start",
     "lint": "next lint",
     "tsc:scripts": "tsc -p tsconfig.scripts.json",
-    "fetch-data": "npm run tsc:scripts && node dist/scripts/fetchCollectionData.js"
+    "fetch-data": "npm run tsc:scripts && node dist/scripts/fetchCollectionData.js",
+    "fetch-missions": "npm run tsc:scripts && node dist/scripts/fetchMissions.js",
+    "fetch-trx": "npm run tsc:scripts && node dist/scripts/fetchAndInsertMissionResults.js"
   },
   "dependencies": {
     "@supabase/supabase-js": "^2.45.0",
