@@ -2,8 +2,15 @@ import fetch from 'node-fetch';
 import dotenv from 'dotenv';
 import { SupabaseClient } from '@supabase/supabase-js';
 import { determineFameLevel } from '../utils/determineFameLevel.js';
-import { RpcResponse, Signature, Transaction } from '../types/index.js';
-import { extractFoxOwner, extractAddresses, extractMissionResult, extractDenBonus, extractFameBefore, extractFameAfter, extractMissionFame, extractChestsBase, extractTier, extractTokenBalanceChanges, isEndMissionTransaction } from '../extractors/index.js';
+import { 
+    RpcResponse, Signature, Transaction
+} from '../types/index.js';
+import { 
+    extractFoxOwner, extractAddresses, extractMissionResult, 
+    extractDenBonus, extractFameBefore, extractFameAfter, 
+    extractMissionFame, extractChestsBase, extractTier,
+    extractTokenBalanceChanges, isEndMissionTransaction 
+} from '../extractors/index.js';
 
 dotenv.config();
 
@@ -164,8 +171,13 @@ export class MissionResultProcessor {
         let blocktime: number | undefined;
 
         try {
-            const { logMessages, innerInstructions, preTokenBalances, postTokenBalances } = transaction.meta;
+            const { logMessages, innerInstructions, preTokenBalances, postTokenBalances, err } = transaction.meta;
             blocktime = transaction.blockTime;
+
+            if (err) {
+                console.log(`Transaction with signature ${signature} failed. Skipping.`);
+                return;
+            }
 
             if (!isEndMissionTransaction(logMessages)) {
                 console.log(`Transaction with signature ${signature} is not an EndMissionv2 transaction. Skipping.`);
@@ -174,6 +186,7 @@ export class MissionResultProcessor {
 
             const { fox_address, den_address, fox_id, fox_collection } = await extractAddresses(innerInstructions, this.supabase);
             const fox_owner = extractFoxOwner(innerInstructions);
+            const mission_address = await this.getMissionAddress(transaction.transaction.message.accountKeys.map(key => key.pubkey));
 
             console.log(`Final extracted addresses - Fox: ${fox_address}, Den: ${den_address}, Fox ID: ${fox_id}, Fox Collection: ${fox_collection}`);
 
@@ -204,8 +217,6 @@ export class MissionResultProcessor {
             const level_after = determineFameLevel(fame_after, this.fameLevels);
 
             const { fox_power, den_power } = await this.calculatePowers(fox_address, den_address, fame_before, fox_collection);
-
-            const mission_address = await this.getMissionAddress(transaction.transaction.message.accountKeys.map(key => key.pubkey));
 
             const missionResult = {
                 signature,
