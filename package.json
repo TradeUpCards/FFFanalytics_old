@@ -12,7 +12,8 @@
     "tsc:scripts": "tsc -p tsconfig.scripts.json",
     "fetch-data": "npm run tsc:scripts && node dist/scripts/fetchCollectionData.js",
     "fetch-missions": "npm run tsc:scripts && node dist/scripts/fetchMissions.js",
-    "fetch-trx": "npm run tsc:scripts && node dist/scripts/fetchAndInsertMissionResults.js"
+    "fetch-trx": "npm run tsc:scripts && node dist/scripts/fetchAndInsertMissionResults.js",
+    "fetch-test": "npm run tsc:scripts && node dist/scripts/testTransaction.js"
   },
   "dependencies": {
     "@supabase/supabase-js": "^2.45.0",
@@ -35,6 +36,7 @@
     "postcss": "^8",
     "tailwindcss": "^3.4.1",
     "ts-node": "^10.9.2",
+    "tsc-alias": "^1.8.10",
     "typescript": "^5.5.4"
   }
 }
