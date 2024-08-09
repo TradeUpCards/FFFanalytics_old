@@ -10,7 +10,7 @@ export default function TransactionsPage() {
     useEffect(() => {
         async function fetchTransactions() {
             try {
-                const response = await fetch('/api/getTransactions');
+                const response = await fetch('/api/getMissionResults');
                 const data = await response.json();
                 setTransactions(data);
             } catch (err) {
