@@ -21,11 +21,17 @@ export function extractFoxCollection(logMessages: string[]): string {
     return '';
 }
 
-export function extractFoxOwner(innerInstructions: InnerInstruction[]): string {
+export function extractFoxOwner(innerInstructions: InnerInstruction[], isEndMission: boolean = false): string {
     for (const innerInstruction of innerInstructions) {
         for (const instruction of innerInstruction.instructions) {
-            if (instruction.parsed?.type === 'revoke' && instruction.parsed.info?.owner) {
-                return instruction.parsed.info.owner;
+            if (isEndMission) {
+                if (instruction.parsed?.type === 'revoke' && instruction.parsed.info?.owner) {
+                    return instruction.parsed.info.owner;
+                }
+            } else {
+                if ((instruction.parsed?.type === 'revoke' || instruction.parsed?.type === 'approve') && instruction.parsed.info?.owner) {
+                    return instruction.parsed.info.owner;
+                }
             }
         }
     }
@@ -77,6 +83,43 @@ export async function extractAddresses(innerInstructions: InnerInstruction[], su
                     continue;
                 }
             }
+            if (instruction.parsed?.type === 'freezeAccount' && instruction.parsed.info?.mint) {
+                const mintAddress = instruction.parsed.info.mint;
+                console.log(`Found freezeAccount with mint address: ${mintAddress}`);
+
+                // Validate if the mint address is a fox or den
+                const { data: foxData, error: foxError } = await supabase
+                    .from('collections')
+                    .select('*')
+                    .neq('collection_name', 'Dens')
+                    .eq('token_address', mintAddress)
+                    .single();
+
+                if (foxError || !foxData) {
+                    console.log(`Address ${mintAddress} is not a fox: ${foxError ? foxError.message : 'No data found'}`);
+                } else {
+                    fox_address = mintAddress;
+                    fox_id = foxData.name.replace('Fox #', ''); // Assuming the name is in the format 'Fox #ID'
+                    fox_collection = foxData.collection_name;
+                    console.log(`Validated fox address: ${fox_address}`);
+                    continue;
+                }
+
+                const { data: denData, error: denError } = await supabase
+                    .from('collections')
+                    .select('score')
+                    .eq('collection_name', 'Dens')
+                    .eq('token_address', mintAddress)
+                    .single();
+
+                if (denError || !denData) {
+                    console.log(`Address ${mintAddress} is not a den: ${denError ? denError.message : 'No data found'}`);
+                } else {
+                    den_address = mintAddress;
+                    console.log(`Validated den address: ${den_address}`);
+                    continue;
+                }
+            }
         }
     }
 
@@ -85,7 +128,6 @@ export async function extractAddresses(innerInstructions: InnerInstruction[], su
 }
 
 export function extractMissionResult(logMessages: string[]): boolean {
-    // Determine mission result based on the absence of "User didn't qualify true"
     return !logMessages.some(message => message.includes("User didn't qualify true"));
 }
 
@@ -166,4 +208,19 @@ export function extractTokenBalanceChanges(preTokenBalances: any, postTokenBalan
 
 export function isEndMissionTransaction(logMessages: string[]): boolean {
     return logMessages.some(message => message.includes('Instruction: EndMissionv2'));
+}
+
+export function isStartMissionTransaction(logMessages: string[]): boolean {
+    return logMessages.some(message => message.includes('Instruction: StartMission'));
+}
+
+export function extractFame(logMessages: string[]): number {
+    const regex = /FAME: (\d+)/;
+    for (const message of logMessages) {
+        const match = message.match(regex);
+        if (match) {
+            return parseInt(match[1], 10);
+        }
+    }
+    return 0;
 }

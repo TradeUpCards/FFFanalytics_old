@@ -19,11 +19,18 @@ export function extractFoxCollection(logMessages) {
     }
     return '';
 }
-export function extractFoxOwner(innerInstructions) {
+export function extractFoxOwner(innerInstructions, isEndMission = false) {
     for (const innerInstruction of innerInstructions) {
         for (const instruction of innerInstruction.instructions) {
-            if (instruction.parsed?.type === 'revoke' && instruction.parsed.info?.owner) {
-                return instruction.parsed.info.owner;
+            if (isEndMission) {
+                if (instruction.parsed?.type === 'revoke' && instruction.parsed.info?.owner) {
+                    return instruction.parsed.info.owner;
+                }
+            }
+            else {
+                if ((instruction.parsed?.type === 'revoke' || instruction.parsed?.type === 'approve') && instruction.parsed.info?.owner) {
+                    return instruction.parsed.info.owner;
+                }
             }
         }
     }
@@ -71,13 +78,47 @@ export async function extractAddresses(innerInstructions, supabase) {
                     continue;
                 }
             }
+            if (instruction.parsed?.type === 'freezeAccount' && instruction.parsed.info?.mint) {
+                const mintAddress = instruction.parsed.info.mint;
+                console.log(`Found freezeAccount with mint address: ${mintAddress}`);
+                // Validate if the mint address is a fox or den
+                const { data: foxData, error: foxError } = await supabase
+                    .from('collections')
+                    .select('*')
+                    .neq('collection_name', 'Dens')
+                    .eq('token_address', mintAddress)
+                    .single();
+                if (foxError || !foxData) {
+                    console.log(`Address ${mintAddress} is not a fox: ${foxError ? foxError.message : 'No data found'}`);
+                }
+                else {
+                    fox_address = mintAddress;
+                    fox_id = foxData.name.replace('Fox #', ''); // Assuming the name is in the format 'Fox #ID'
+                    fox_collection = foxData.collection_name;
+                    console.log(`Validated fox address: ${fox_address}`);
+                    continue;
+                }
+                const { data: denData, error: denError } = await supabase
+                    .from('collections')
+                    .select('score')
+                    .eq('collection_name', 'Dens')
+                    .eq('token_address', mintAddress)
+                    .single();
+                if (denError || !denData) {
+                    console.log(`Address ${mintAddress} is not a den: ${denError ? denError.message : 'No data found'}`);
+                }
+                else {
+                    den_address = mintAddress;
+                    console.log(`Validated den address: ${den_address}`);
+                    continue;
+                }
+            }
         }
     }
     console.log(`Final extracted addresses - Fox: ${fox_address}, Den: ${den_address}, Fox ID: ${fox_id}, Fox Collection: ${fox_collection}`);
     return { fox_address, den_address, fox_id, fox_collection };
 }
 export function extractMissionResult(logMessages) {
-    // Determine mission result based on the absence of "User didn't qualify true"
     return !logMessages.some(message => message.includes("User didn't qualify true"));
 }
 export function extractDenBonus(logMessages) {
@@ -151,4 +192,17 @@ export function extractTokenBalanceChanges(preTokenBalances, postTokenBalances) 
 }
 export function isEndMissionTransaction(logMessages) {
     return logMessages.some(message => message.includes('Instruction: EndMissionv2'));
+}
+export function isStartMissionTransaction(logMessages) {
+    return logMessages.some(message => message.includes('Instruction: StartMission'));
+}
+export function extractFame(logMessages) {
+    const regex = /FAME: (\d+)/;
+    for (const message of logMessages) {
+        const match = message.match(regex);
+        if (match) {
+            return parseInt(match[1], 10);
+        }
+    }
+    return 0;
 }

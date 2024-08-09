@@ -13,7 +13,8 @@
     "fetch-data": "npm run tsc:scripts && node dist/scripts/fetchCollectionData.js",
     "fetch-missions": "npm run tsc:scripts && node dist/scripts/fetchMissions.js",
     "fetch-trx": "npm run tsc:scripts && node dist/scripts/fetchAndInsertMissionResults.js",
-    "fetch-test": "npm run tsc:scripts && node dist/scripts/testTransaction.js"
+    "fetch-test": "npm run tsc:scripts && node dist/scripts/testTransaction.js",
+    "fetch-test-start": "npm run tsc:scripts && node dist/scripts/testStartMission.js"
   },
   "dependencies": {
     "@supabase/supabase-js": "^2.45.0",

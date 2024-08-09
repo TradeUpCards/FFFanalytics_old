@@ -9,7 +9,8 @@ import {
     extractFoxOwner, extractAddresses, extractMissionResult, 
     extractDenBonus, extractFameBefore, extractFameAfter, 
     extractMissionFame, extractChestsBase, extractTier,
-    extractTokenBalanceChanges, isEndMissionTransaction 
+    extractTokenBalanceChanges, isEndMissionTransaction, 
+    isStartMissionTransaction, extractFame 
 } from '../extractors/index.js';
 
 dotenv.config();
@@ -185,7 +186,7 @@ export class MissionResultProcessor {
             }
 
             const { fox_address, den_address, fox_id, fox_collection } = await extractAddresses(innerInstructions, this.supabase);
-            const fox_owner = extractFoxOwner(innerInstructions);
+            const fox_owner = extractFoxOwner(innerInstructions, true); // Updated to check for 'revoke' only for EndMission
             const mission_address = await this.getMissionAddress(transaction.transaction.message.accountKeys.map(key => key.pubkey));
 
             console.log(`Final extracted addresses - Fox: ${fox_address}, Den: ${den_address}, Fox ID: ${fox_id}, Fox Collection: ${fox_collection}`);
@@ -268,6 +269,77 @@ export class MissionResultProcessor {
         }
     }
 
+    async processStartMission(transaction: Transaction, signature: string): Promise<void> {
+        let blocktime: number | undefined;
+
+        try {
+            const { logMessages, innerInstructions, err } = transaction.meta;
+            blocktime = transaction.blockTime;
+
+            if (err) {
+                console.log(`Transaction with signature ${signature} failed. Skipping.`);
+                return;
+            }
+
+            if (!isStartMissionTransaction(logMessages)) {
+                console.log(`Transaction with signature ${signature} is not a StartMission transaction. Skipping.`);
+                return;
+            }
+
+            const { fox_address, den_address, fox_id, fox_collection } = await extractAddresses(innerInstructions, this.supabase);
+            const fox_owner = extractFoxOwner(innerInstructions, false); // Updated to check for 'approve' only for StartMission
+            const mission_address = await this.getMissionAddress(transaction.transaction.message.accountKeys.map(key => key.pubkey));
+
+            console.log(`Final extracted addresses - Fox: ${fox_address}, Den: ${den_address}, Fox ID: ${fox_id}, Fox Collection: ${fox_collection}`);
+
+            const fame = extractFame(logMessages);
+            const { tier } = extractTier(logMessages);
+
+            const { fox_power, den_power } = await this.calculatePowers(fox_address, den_address, fame, fox_collection);
+            const total_power = fox_power + (den_power || 0);
+            const level = determineFameLevel(fame, this.fameLevels);
+
+            const missionSend = {
+                signature,
+                blocktime,
+                fox_id,
+                fox_collection,
+                fox_owner,
+                fox_address,
+                den_address,
+                mission_address,
+                fame,
+                tier,
+                fox_power,
+                den_power,
+                total_power,
+                level
+            };
+
+            console.log('Mission Send:', missionSend);
+
+            const { data, error } = await this.supabase
+                .from('mission_sends')
+                .insert([missionSend]);
+
+            if (error) {
+                if (error.code === '23505') {
+                    console.log(`Mission send for signature ${signature} already exists. Skipping insertion.`);
+                } else {
+                    console.error('Error inserting mission send:', error);
+                    this.logErrorToFile({ signature, blocktime, error: error.message });
+                    this.logFailedTransactionToCSV(signature, blocktime);
+                }
+            } else {
+                console.log('Mission send inserted successfully:', data);
+            }
+        } catch (error) {
+            console.error(`Error processing transaction with signature ${signature}:`, error);
+            this.logErrorToFile({ signature, blocktime, error: (error as Error).message });
+            this.logFailedTransactionToCSV(signature, blocktime);
+        }
+    }
+
     async processMissionResults(before?: string): Promise<void> {
         const missionAddresses = await this.getMissionAddresses();
         let totalInserted = 0;
@@ -285,18 +357,28 @@ export class MissionResultProcessor {
                         break;
                     }
 
-                    const { data: existingSignatures } = await this.supabase
+                    const { data: existingMissionResults } = await this.supabase
                         .from('mission_results')
                         .select('signature')
                         .in('signature', signatures.map(sig => sig.signature));
 
-                    if (!existingSignatures) {
+                    const { data: existingMissionSends } = await this.supabase
+                        .from('mission_sends')
+                        .select('signature')
+                        .in('signature', signatures.map(sig => sig.signature));
+
+                    if (!existingMissionResults && !existingMissionSends) {
                         console.error('Error fetching existing signatures.');
                         break;
                     }
 
+                    const existingSignatures = [
+                        ...(existingMissionResults?.map((result: { signature: string }) => result.signature) ?? []),
+                        ...(existingMissionSends?.map((send: { signature: string }) => send.signature) ?? []),
+                    ];
+
                     const newSignatures = signatures.filter(sig => 
-                        !existingSignatures.some((existing: { signature: string }) => existing.signature === sig.signature)
+                        !existingSignatures.includes(sig.signature)
                     );
 
                     console.log(`Processing ${newSignatures.length} new signatures out of ${signatures.length}`);
@@ -304,7 +386,11 @@ export class MissionResultProcessor {
                     for (const signature of newSignatures) {
                         const transaction = await this.getTransaction(signature.signature);
                         if (transaction) {
-                            await this.insertMissionResult(transaction, signature.signature);
+                            if (isEndMissionTransaction(transaction.meta.logMessages)) {
+                                await this.insertMissionResult(transaction, signature.signature);
+                            } else if (isStartMissionTransaction(transaction.meta.logMessages)) {
+                                await this.processStartMission(transaction, signature.signature);
+                            }
                             totalInserted++;
                         }
                     }

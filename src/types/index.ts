@@ -21,6 +21,7 @@ export interface Transaction {
                 data: string;
             }[];
         };
+        signatures: string[]; // Added this line
     };
     meta: {
         err: any;
@@ -42,7 +43,7 @@ export interface Instruction {
         info?: {
             owner?: string;
             mint?: string;
-            destination?: string; // Added to match your requirement
+            destination?: string; // Matches your requirement
         };
         type?: string;
     };
