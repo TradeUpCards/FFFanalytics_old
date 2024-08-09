@@ -1,7 +1,7 @@
 // src/pages/transactions.tsx
 
 import { useEffect, useState } from 'react';
-
+ 
 export default function TransactionsPage() {
     const [transactions, setTransactions] = useState<any[]>([]);
     const [loading, setLoading] = useState(true);
@@ -14,7 +14,7 @@ export default function TransactionsPage() {
                 const data = await response.json();
                 setTransactions(data);
             } catch (err) {
-                setError('Failed to fetch transactions');
+                setError('Failed to fetch transactions!');
             } finally {
                 setLoading(false);
             }
