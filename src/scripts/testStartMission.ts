@@ -1,7 +1,7 @@
 import dotenv from 'dotenv';
 import { createClient, SupabaseClient } from '@supabase/supabase-js';
-import { MissionResultProcessor } from '../processors/MissionResultProcessor.js';
-import { determineFameLevel } from '../utils/determineFameLevel.js';
+import { MissionResultProcessor } from '../processors/MissionResultProcessor';
+import { determineFameLevel } from '../utils/determineFameLevel';
 
 dotenv.config();
 

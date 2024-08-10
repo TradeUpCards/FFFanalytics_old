@@ -1,4 +1,4 @@
-import { InnerInstruction } from '../types/index.js';
+import { InnerInstruction } from '../types/index';
 import { SupabaseClient } from '@supabase/supabase-js';
 
 export function extractFoxId(logMessages: string[]): string {

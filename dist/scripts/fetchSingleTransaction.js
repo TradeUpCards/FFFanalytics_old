@@ -1,6 +1,6 @@
 import fetch from 'node-fetch';
 import dotenv from 'dotenv';
-import { getMostRecentExpiry } from './fetchMostRecentExpiry.js';
+import { getMostRecentExpiry } from './fetchMostRecentExpiry';
 dotenv.config();
 const SOLANA_RPC_URL = process.env.SOLANA_RPC_URL || 'https://api.mainnet-beta.solana.com';
 async function getSlotFromTimestamp(timestamp) {

@@ -1,8 +1,8 @@
-import { fetchCollectionMetadata } from './fetchMetadata.js';
-import { parseMetadata } from './parseMetadata.js';
-import { saveToSupabase } from './saveToSupabase.js';
-import { readTraitRarities } from '../utils/readTraitRarities.js';
-import { readFameLevels } from '../utils/readFameLevels.js';
+import { fetchCollectionMetadata } from './fetchMetadata';
+import { parseMetadata } from './parseMetadata';
+import { saveToSupabase } from './saveToSupabase';
+import { readTraitRarities } from '../utils/readTraitRarities';
+import { readFameLevels } from '../utils/readFameLevels';
 
 async function main() {
     const traitRarities = await readTraitRarities();

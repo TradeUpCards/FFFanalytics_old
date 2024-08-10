@@ -1,14 +1,14 @@
 import dotenv from 'dotenv';
 import fetch from 'node-fetch';
 import { createClient } from '@supabase/supabase-js';
-import { RpcResponse, Transaction } from '../types/index.js';
+import { RpcResponse, Transaction } from '../types/index';
 import { 
     extractFoxOwner, extractAddresses, extractMissionResult, 
     extractDenBonus, extractFameBefore, extractFameAfter, 
     extractMissionFame, extractChestsBase, extractTier,
     extractTokenBalanceChanges, isEndMissionTransaction 
-} from '../extractors/index.js';
-import { determineFameLevel } from '../utils/determineFameLevel.js';
+} from '../extractors/index';
+import { determineFameLevel } from '../utils/determineFameLevel';
 
 dotenv.config();
 

@@ -1,8 +1,8 @@
 import dotenv from 'dotenv';
 import fetch from 'node-fetch';
 import { createClient } from '@supabase/supabase-js';
-import { extractFoxOwner, extractAddresses, extractMissionResult, extractDenBonus, extractFameBefore, extractFameAfter, extractMissionFame, extractChestsBase, extractTier, extractTokenBalanceChanges } from '../extractors/index.js';
-import { determineFameLevel } from '../utils/determineFameLevel.js';
+import { extractFoxOwner, extractAddresses, extractMissionResult, extractDenBonus, extractFameBefore, extractFameAfter, extractMissionFame, extractChestsBase, extractTier, extractTokenBalanceChanges } from '../extractors/index';
+import { determineFameLevel } from '../utils/determineFameLevel';
 dotenv.config();
 const supabaseUrl = process.env.SUPABASE_URL || '';
 const supabaseKey = process.env.SUPABASE_KEY || '';

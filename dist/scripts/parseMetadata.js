@@ -1,5 +1,5 @@
-import { rarityToValue } from '../utils/rarityToValue.js';
-import { determineFameLevel } from '../utils/determineFameLevel.js';
+import { rarityToValue } from '../utils/rarityToValue';
+import { determineFameLevel } from '../utils/determineFameLevel';
 async function parseMetadata(metadataList, collectionName, traitRarities, fameLevels) {
     const parsedData = [];
     for (const metadata of metadataList) {

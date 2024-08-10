@@ -1,5 +1,5 @@
-import { rarityToValue } from '../utils/rarityToValue.js';
-import { determineFameLevel } from '../utils/determineFameLevel.js';
+import { rarityToValue } from '../utils/rarityToValue';
+import { determineFameLevel } from '../utils/determineFameLevel';
 
 interface Metadata {
   collection_name: string;
