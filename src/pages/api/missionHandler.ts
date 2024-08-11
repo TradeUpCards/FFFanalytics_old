@@ -6,6 +6,7 @@ export default async function handler(req: NextApiRequest, res: NextApiResponse)
     if (req.method === 'POST') {
         try {
             const transactions = req.body; // Helius sends an array of transactions
+            console.log("Received payload:", req.body);
 
             for (const transaction of transactions) {
                 await processMissionEvent(transaction, supabase); // Pass both transaction and supabase
