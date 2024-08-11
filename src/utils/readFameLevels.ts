@@ -1,7 +1,7 @@
 import fs from 'fs';
 import path from 'path';
 
-const fameLevelsFilePath = path.join('data', 'fame_levels.json');
+const fameLevelsFilePath = path.join('public','data', 'fame_levels.json');
 
 async function readFameLevels(): Promise<Record<number, number>> {
   return new Promise<Record<number, number>>((resolve, reject) => {
