@@ -14,7 +14,9 @@ export default async function handler(req: NextApiRequest, res: NextApiResponse)
                 console.log("innerInstructions:", transaction.meta.innerInstructions);
                 const accountKeys = transaction.transaction.message.accountKeys as AccountKey[];
 
-                console.log("transaction.message.accountKeys:", accountKeys.map((key: AccountKey) => key.pubkey));
+                console.log("Full transaction payload:", transaction.transaction);
+                console.log("Account Keys:", accountKeys);
+                                console.log("transaction.message.accountKeys:", accountKeys.map((key: AccountKey) => key.pubkey));
                 await processMissionEvent(transaction, supabase); // Pass both transaction and supabase
             }
 
