@@ -1,7 +1,7 @@
 import dotenv from 'dotenv';
 import fetch from 'node-fetch';
 import { createClient } from '@supabase/supabase-js';
-import { RpcResponse, Transaction } from '../types/index';
+import { RpcResponse, Transaction, AccountKey } from '../types/index';
 import { 
     extractFoxOwner, extractAddresses, extractMissionResult, 
     extractDenBonus, extractFameBefore, extractFameAfter, 
@@ -63,7 +63,7 @@ async function testTransaction() {
     const { logMessages, innerInstructions, preTokenBalances, postTokenBalances } = transaction.meta;
     const blocktime = transaction.blockTime;
     // Extract pubkey strings from accountKeys
-    const accountKeys = transaction.transaction.message.accountKeys.map(key => key.pubkey);
+    const accountKeys = transaction.transaction.message.accountKeys as AccountKey[];
 
     const { fox_address, den_address, mission_address, fox_id, fox_collection } = await extractAddresses(innerInstructions,accountKeys, supabase);
     const fox_owner = extractFoxOwner(innerInstructions);

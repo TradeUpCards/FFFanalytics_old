@@ -17,6 +17,7 @@ import {
 import { Transaction } from '../types/index';
 import { determineFameLevel } from '../utils/determineFameLevel';
 import { readFameLevels } from '../utils/readFameLevels'; // Import the function to read fame levels from JSON
+import { AccountKey } from '../types';
 
 // Function to process a transaction and extract relevant mission event details
 export async function processMissionEvent(transaction: Transaction, supabase: SupabaseClient) {
@@ -44,7 +45,7 @@ async function processEndMission(transaction: Transaction, supabase: SupabaseCli
     const blocktime = transaction.blockTime;
     const signature = transaction.transaction.signatures[0];
     // Extract pubkey strings from accountKeys
-    const accountKeys = transaction.transaction.message.accountKeys.map(key => key.pubkey);
+    const accountKeys = transaction.transaction.message.accountKeys as AccountKey[];
 
     console.log('Processing EndMissionv2 transaction:', signature);
     console.log ('Inner Instructions:', innerInstructions);
@@ -132,7 +133,7 @@ async function processStartMission(transaction: Transaction, supabase: SupabaseC
     const blocktime = transaction.blockTime;
     const signature = transaction.transaction.signatures[0];
     // Extract pubkey strings from accountKeys
-    const accountKeys = transaction.transaction.message.accountKeys.map(key => key.pubkey);
+    const accountKeys = transaction.transaction.message.accountKeys as AccountKey[];
 
     console.log('Processing EndMissionv2 transaction:', signature);
     console.log ('Inner Instructions:', innerInstructions);

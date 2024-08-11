@@ -3,7 +3,7 @@ import dotenv from 'dotenv';
 import { SupabaseClient } from '@supabase/supabase-js';
 import { determineFameLevel } from '../utils/determineFameLevel.js';
 import { 
-    RpcResponse, Signature, Transaction
+    RpcResponse, Signature, Transaction, AccountKey
 } from '../types/index.js';
 import { 
     extractFoxOwner, extractAddresses, extractMissionResult, 
@@ -181,7 +181,7 @@ export class MissionResultProcessor {
             const { logMessages, innerInstructions, preTokenBalances, postTokenBalances, err } = transaction.meta;
             blocktime = transaction.blockTime;
             // Extract pubkey strings from accountKeys
-            const accountKeys = transaction.transaction.message.accountKeys.map(key => key.pubkey);
+            const accountKeys = transaction.transaction.message.accountKeys as AccountKey[];
 
             if (err) {
                 console.log(`Transaction with signature ${signature} failed. Skipping.`);
@@ -286,7 +286,7 @@ export class MissionResultProcessor {
         try {
             const { logMessages, innerInstructions, err } = transaction.meta;
             // Extract pubkey strings from accountKeys
-            const accountKeys = transaction.transaction.message.accountKeys.map(key => key.pubkey);
+            const accountKeys = transaction.transaction.message.accountKeys as AccountKey[];
             console.log('Account keys:', accountKeys);
             blocktime = transaction.blockTime;
 

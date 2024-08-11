@@ -1,4 +1,4 @@
-import { InnerInstruction } from '../types/index';
+import { AccountKey, InnerInstruction } from '../types/index';
 import { SupabaseClient } from '@supabase/supabase-js';
 
 export function extractFoxId(logMessages: string[]): string {
@@ -40,7 +40,7 @@ export function extractFoxOwner(innerInstructions: InnerInstruction[], isEndMiss
 
 export async function extractAddresses(
     innerInstructions: InnerInstruction[],
-    accountKeys: string[],
+    accountKeys: AccountKey[],
     supabase: SupabaseClient
 ): Promise<{ fox_address: string | null; den_address: string | null; mission_address: string | null; fox_id: string | null; fox_collection: string | null }> {
     let fox_address: string | null = null;
