@@ -50,6 +50,8 @@ export async function extractAddresses(
     let fox_collection: string | null = null;
 
     for (const innerInstruction of innerInstructions) {
+        console.log(`Processing inner instruction: ${innerInstruction.index}`);
+        console.log(`Instructions: ${innerInstruction.instructions}`);
         for (const instruction of innerInstruction.instructions) {
             if (instruction.parsed?.type === 'thawAccount' && instruction.parsed.info?.mint) {
                 const mintAddress = instruction.parsed.info.mint;
