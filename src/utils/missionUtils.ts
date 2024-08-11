@@ -105,6 +105,19 @@ async function processEndMission(transaction: Transaction, supabase: SupabaseCli
     };
 
     console.log('Processed EndMissionv2 result:', missionResult);
+    const { data, error } = await supabase
+    .from('mission_results')
+    .insert([missionResult]);
+
+if (error) {
+    if (error.code === '23505') {
+        console.log(`Mission result for signature ${signature} already exists. Skipping insertion.`);
+    } else {
+        console.error('Error inserting mission result:', error);
+    }
+} else {
+    console.log('Mission result inserted successfully:', data);
+}
 
     return missionResult;
 }
@@ -146,6 +159,19 @@ async function processStartMission(transaction: Transaction, supabase: SupabaseC
     };
 
     console.log('Processed StartMission event:', missionSend);
+    const { data, error } = await supabase
+    .from('mission_sends')
+    .insert([missionSend]);
+
+if (error) {
+    if (error.code === '23505') {
+        console.log(`Mission send for signature ${signature} already exists. Skipping insertion.`);
+    } else {
+        console.error('Error inserting mission send:', error);
+    }
+} else {
+    console.log('Mission send inserted successfully:', data);
+}
 
     return missionSend;
 }
