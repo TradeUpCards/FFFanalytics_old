@@ -224,3 +224,22 @@ export function extractFame(logMessages: string[]): number {
     }
     return 0;
 }
+
+/**
+ * Extracts the transaction types from the inner instructions.
+ * @param innerInstructions - An array of inner instructions.
+ * @returns A comma-separated string of transaction types.
+ */
+export function extractTrxTypes(innerInstructions: InnerInstruction[]): string {
+    const trxTypes: Set<string> = new Set();
+
+    for (const innerInstruction of innerInstructions) {
+        for (const instruction of innerInstruction.instructions) {
+            if (instruction.parsed?.type) {
+                trxTypes.add(instruction.parsed.type);
+            }
+        }
+    }
+
+    return Array.from(trxTypes).join(',');
+}

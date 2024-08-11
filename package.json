@@ -15,7 +15,8 @@
     "fetch-trx": "npm run tsc:scripts && node dist/scripts/fetchAndInsertMissionResults.js",
     "fetch-test": "npm run tsc:scripts && node dist/scripts/testTransaction.js",
     "fetch-test-start": "npm run tsc:scripts && node dist/scripts/testStartMission.js",
-    "fetch-foxes": "npm run tsc:scripts && node dist/scripts/fetchFoxAccounts.js"
+    "fetch-foxes": "npm run tsc:scripts && node dist/scripts/fetchFoxAccounts.js",
+    "fetch-fox-snapshots": "npm run tsc:scripts && node dist/scripts/fetchFoxSnapshots.js"
   },
   "dependencies": {
     "@coral-xyz/anchor": "^0.30.1",
