@@ -43,12 +43,13 @@ async function processEndMission(transaction: Transaction, supabase: SupabaseCli
     const { logMessages, innerInstructions, preTokenBalances, postTokenBalances } = transaction.meta;
     const blocktime = transaction.blockTime;
     const signature = transaction.transaction.signatures[0];
+    // Extract pubkey strings from accountKeys
+    const accountKeys = transaction.transaction.message.accountKeys.map(key => key.pubkey);
 
-    const { fox_address, den_address, fox_id, fox_collection } = await extractAddresses(innerInstructions, supabase);
+    const { fox_address, den_address, mission_address, fox_id, fox_collection } = await extractAddresses(innerInstructions, accountKeys, supabase);
     const fox_owner = extractFoxOwner(innerInstructions, true);
-    const mission_address = await getMissionAddress(transaction.transaction.message.accountKeys.map(key => key.pubkey), supabase);
 
-    console.log(`Extracted addresses - Fox: ${fox_address}, Den: ${den_address}, Fox ID: ${fox_id}, Fox Collection: ${fox_collection}`);
+    console.log(`Extracted addresses - Fox: ${fox_address}, Den: ${den_address}, Fox ID: ${fox_id}, Fox Collection: ${fox_collection}, Mission: ${mission_address}`);
 
     const mission_result = extractMissionResult(logMessages);
     const den_bonus = extractDenBonus(logMessages);
@@ -127,12 +128,13 @@ async function processStartMission(transaction: Transaction, supabase: SupabaseC
     const { logMessages, innerInstructions } = transaction.meta;
     const blocktime = transaction.blockTime;
     const signature = transaction.transaction.signatures[0];
+    // Extract pubkey strings from accountKeys
+    const accountKeys = transaction.transaction.message.accountKeys.map(key => key.pubkey);
 
-    const { fox_address, den_address, fox_id, fox_collection } = await extractAddresses(innerInstructions, supabase);
+    const { fox_address, den_address, mission_address, fox_id, fox_collection } = await extractAddresses(innerInstructions, accountKeys, supabase);
     const fox_owner = extractFoxOwner(innerInstructions, false);
-    const mission_address = await getMissionAddress(transaction.transaction.message.accountKeys.map(key => key.pubkey), supabase);
 
-    console.log(`Extracted addresses - Fox: ${fox_address}, Den: ${den_address}, Fox ID: ${fox_id}, Fox Collection: ${fox_collection}`);
+    console.log(`Extracted addresses - Fox: ${fox_address}, Den: ${den_address}, Fox ID: ${fox_id}, Fox Collection: ${fox_collection}, Mission: ${mission_address}`);
 
     const fame = extractFame(logMessages);
     const { tier } = extractTier(logMessages);

@@ -83,7 +83,8 @@ export class MissionResultProcessor {
             params: [
                 signature,
                 {
-                    encoding: "jsonParsed"
+                    encoding: "jsonParsed",
+                    maxSupportedTransactionVersion: 0 // Adding this parameter
                 }
             ]
         };
@@ -93,6 +94,7 @@ export class MissionResultProcessor {
             body: JSON.stringify(payload)
         });
         const result = await response.json();
+        console.log(result);
         return result.result;
     }
     async getMissionAddress(accountKeys) {
@@ -141,6 +143,8 @@ export class MissionResultProcessor {
         try {
             const { logMessages, innerInstructions, preTokenBalances, postTokenBalances, err } = transaction.meta;
             blocktime = transaction.blockTime;
+            // Extract pubkey strings from accountKeys
+            const accountKeys = transaction.transaction.message.accountKeys.map(key => key.pubkey);
             if (err) {
                 console.log(`Transaction with signature ${signature} failed. Skipping.`);
                 await insertFailedTransaction(signature);
@@ -150,10 +154,9 @@ export class MissionResultProcessor {
                 console.log(`Transaction with signature ${signature} is not an EndMissionv2 transaction. Skipping.`);
                 return false;
             }
-            const { fox_address, den_address, fox_id, fox_collection } = await extractAddresses(innerInstructions, this.supabase);
+            const { fox_address, den_address, mission_address, fox_id, fox_collection } = await extractAddresses(innerInstructions, accountKeys, this.supabase);
             const fox_owner = extractFoxOwner(innerInstructions, true); // Updated to check for 'revoke' only for EndMission
-            const mission_address = await this.getMissionAddress(transaction.transaction.message.accountKeys.map(key => key.pubkey));
-            console.log(`Final extracted addresses - Fox: ${fox_address}, Den: ${den_address}, Fox ID: ${fox_id}, Fox Collection: ${fox_collection}`);
+            console.log(`Final extracted addresses - Fox: ${fox_address}, Den: ${den_address}, Fox ID: ${fox_id}, Fox Collection: ${fox_collection}, Mission: ${mission_address}`);
             const mission_result = extractMissionResult(logMessages);
             const den_bonus = extractDenBonus(logMessages);
             const fame_before = extractFameBefore(logMessages);
@@ -233,6 +236,9 @@ export class MissionResultProcessor {
         let blocktime;
         try {
             const { logMessages, innerInstructions, err } = transaction.meta;
+            // Extract pubkey strings from accountKeys
+            const accountKeys = transaction.transaction.message.accountKeys.map(key => key.pubkey);
+            console.log('Account keys:', accountKeys);
             blocktime = transaction.blockTime;
             if (err) {
                 console.log(`Transaction with signature ${signature} failed. Skipping.`);
@@ -242,10 +248,9 @@ export class MissionResultProcessor {
                 console.log(`Transaction with signature ${signature} is not a StartMission transaction. Skipping.`);
                 return false;
             }
-            const { fox_address, den_address, fox_id, fox_collection } = await extractAddresses(innerInstructions, this.supabase);
+            const { fox_address, den_address, mission_address, fox_id, fox_collection } = await extractAddresses(innerInstructions, accountKeys, this.supabase);
             const fox_owner = extractFoxOwner(innerInstructions, false); // Updated to check for 'approve' only for StartMission
-            const mission_address = await this.getMissionAddress(transaction.transaction.message.accountKeys.map(key => key.pubkey));
-            console.log(`Final extracted addresses - Fox: ${fox_address}, Den: ${den_address}, Fox ID: ${fox_id}, Fox Collection: ${fox_collection}`);
+            console.log(`Final extracted addresses - Fox: ${fox_address}, Den: ${den_address}, Fox ID: ${fox_id}, Fox Collection: ${fox_collection}, Mission: ${mission_address}`);
             const fame = extractFame(logMessages);
             const { tier } = extractTier(logMessages);
             const { fox_power, den_power } = await this.calculatePowers(fox_address, den_address, fame, fox_collection);

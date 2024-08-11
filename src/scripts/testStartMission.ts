@@ -1,6 +1,6 @@
 import dotenv from 'dotenv';
 import { createClient, SupabaseClient } from '@supabase/supabase-js';
-import { MissionResultProcessor } from '../processors/MissionResultProcessor';
+import { MissionResultProcessor } from '../processors/MissionResultProcessor.js';
 import { determineFameLevel } from '../utils/determineFameLevel';
 
 dotenv.config();
@@ -21,9 +21,9 @@ const fameLevels = {
 const processor = new MissionResultProcessor(supabase, fameLevels);
 
 async function main() {
-    const signature = '478h3AAsA4UuC9DVbyqve2caAB7X9BW7Hh7BdzGhK5WjRoK5GDCyryFYRzqUyDzpSrpt8xM388ExvhboiiRBmALq';
+    const signature = 'pWnFajEQHKShLtUoQbSnD998wt2VwGr8ERPq9hdLnWqngqmMbfseS1Q54bEmtzQ2X1Y71xvod1sVbFJy3qRVg1e';
     const transaction = await processor.getTransaction(signature);
-    console.log('Full transaction response:', JSON.stringify(transaction, null, 2)); // Added for debugging
+    console.log('Full transaction response:', transaction); // Added for debugging
     if (transaction) {
         await processor.processStartMission(transaction, signature);
     }

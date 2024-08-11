@@ -278,6 +278,9 @@ export const combineFoxData = (foxAccounts, foxUpgrades, missionAccounts) => {
             upgrade: upgrade.account, // Attach upgrade data
             mission: mission.account, // Attach mission data
         };
+        if (mission.account.chestCount > 0) {
+            console.log('Combined:', combinedData);
+        }
         // Return combined data
         return combinedData;
     });

@@ -36,9 +36,10 @@ export function extractFoxOwner(innerInstructions, isEndMission = false) {
     }
     return '';
 }
-export async function extractAddresses(innerInstructions, supabase) {
+export async function extractAddresses(innerInstructions, accountKeys, supabase) {
     let fox_address = null;
     let den_address = null;
+    let mission_address = null;
     let fox_id = null;
     let fox_collection = null;
     for (const innerInstruction of innerInstructions) {
@@ -115,8 +116,20 @@ export async function extractAddresses(innerInstructions, supabase) {
             }
         }
     }
-    console.log(`Final extracted addresses - Fox: ${fox_address}, Den: ${den_address}, Fox ID: ${fox_id}, Fox Collection: ${fox_collection}`);
-    return { fox_address, den_address, fox_id, fox_collection };
+    // Identify mission address using account keys
+    const { data: missionData, error: missionError } = await supabase
+        .from('missions')
+        .select('address')
+        .in('address', accountKeys);
+    if (missionError || !missionData || missionData.length === 0) {
+        console.log(`No mission address found: ${missionError ? missionError.message : 'No matching mission data'}`);
+    }
+    else {
+        mission_address = missionData[0].address;
+        console.log(`Validated mission address: ${mission_address}`);
+    }
+    console.log(`Final extracted addresses - Fox: ${fox_address}, Den: ${den_address}, Mission: ${mission_address}, Fox ID: ${fox_id}, Fox Collection: ${fox_collection}`);
+    return { fox_address, den_address, mission_address, fox_id, fox_collection };
 }
 export function extractMissionResult(logMessages) {
     return !logMessages.some(message => message.includes("User didn't qualify true"));

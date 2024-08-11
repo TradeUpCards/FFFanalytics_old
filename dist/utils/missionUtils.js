@@ -23,10 +23,11 @@ async function processEndMission(transaction, supabase, fameLevels) {
     const { logMessages, innerInstructions, preTokenBalances, postTokenBalances } = transaction.meta;
     const blocktime = transaction.blockTime;
     const signature = transaction.transaction.signatures[0];
-    const { fox_address, den_address, fox_id, fox_collection } = await extractAddresses(innerInstructions, supabase);
+    // Extract pubkey strings from accountKeys
+    const accountKeys = transaction.transaction.message.accountKeys.map(key => key.pubkey);
+    const { fox_address, den_address, mission_address, fox_id, fox_collection } = await extractAddresses(innerInstructions, accountKeys, supabase);
     const fox_owner = extractFoxOwner(innerInstructions, true);
-    const mission_address = await getMissionAddress(transaction.transaction.message.accountKeys.map(key => key.pubkey), supabase);
-    console.log(`Extracted addresses - Fox: ${fox_address}, Den: ${den_address}, Fox ID: ${fox_id}, Fox Collection: ${fox_collection}`);
+    console.log(`Extracted addresses - Fox: ${fox_address}, Den: ${den_address}, Fox ID: ${fox_id}, Fox Collection: ${fox_collection}, Mission: ${mission_address}`);
     const mission_result = extractMissionResult(logMessages);
     const den_bonus = extractDenBonus(logMessages);
     const fame_before = extractFameBefore(logMessages);
@@ -75,6 +76,20 @@ async function processEndMission(transaction, supabase, fameLevels) {
         tier_from_log
     };
     console.log('Processed EndMissionv2 result:', missionResult);
+    const { data, error } = await supabase
+        .from('mission_results')
+        .insert([missionResult]);
+    if (error) {
+        if (error.code === '23505') {
+            console.log(`Mission result for signature ${signature} already exists. Skipping insertion.`);
+        }
+        else {
+            console.error('Error inserting mission result:', error);
+        }
+    }
+    else {
+        console.log('Mission result inserted successfully:', data);
+    }
     return missionResult;
 }
 // Function to process and decode the StartMission transaction
@@ -82,10 +97,11 @@ async function processStartMission(transaction, supabase, fameLevels) {
     const { logMessages, innerInstructions } = transaction.meta;
     const blocktime = transaction.blockTime;
     const signature = transaction.transaction.signatures[0];
-    const { fox_address, den_address, fox_id, fox_collection } = await extractAddresses(innerInstructions, supabase);
+    // Extract pubkey strings from accountKeys
+    const accountKeys = transaction.transaction.message.accountKeys.map(key => key.pubkey);
+    const { fox_address, den_address, mission_address, fox_id, fox_collection } = await extractAddresses(innerInstructions, accountKeys, supabase);
     const fox_owner = extractFoxOwner(innerInstructions, false);
-    const mission_address = await getMissionAddress(transaction.transaction.message.accountKeys.map(key => key.pubkey), supabase);
-    console.log(`Extracted addresses - Fox: ${fox_address}, Den: ${den_address}, Fox ID: ${fox_id}, Fox Collection: ${fox_collection}`);
+    console.log(`Extracted addresses - Fox: ${fox_address}, Den: ${den_address}, Fox ID: ${fox_id}, Fox Collection: ${fox_collection}, Mission: ${mission_address}`);
     const fame = extractFame(logMessages);
     const { tier } = extractTier(logMessages);
     const { fox_power, den_power } = await calculatePowers(fox_address, den_address, fame, fox_collection, supabase);
@@ -108,6 +124,20 @@ async function processStartMission(transaction, supabase, fameLevels) {
         level
     };
     console.log('Processed StartMission event:', missionSend);
+    const { data, error } = await supabase
+        .from('mission_sends')
+        .insert([missionSend]);
+    if (error) {
+        if (error.code === '23505') {
+            console.log(`Mission send for signature ${signature} already exists. Skipping insertion.`);
+        }
+        else {
+            console.error('Error inserting mission send:', error);
+        }
+    }
+    else {
+        console.log('Mission send inserted successfully:', data);
+    }
     return missionSend;
 }
 // Utility function to fetch fame levels

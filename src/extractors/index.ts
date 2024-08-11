@@ -38,9 +38,14 @@ export function extractFoxOwner(innerInstructions: InnerInstruction[], isEndMiss
     return '';
 }
 
-export async function extractAddresses(innerInstructions: InnerInstruction[], supabase: SupabaseClient): Promise<{ fox_address: string | null; den_address: string | null; fox_id: string | null; fox_collection: string | null }> {
+export async function extractAddresses(
+    innerInstructions: InnerInstruction[],
+    accountKeys: string[],
+    supabase: SupabaseClient
+): Promise<{ fox_address: string | null; den_address: string | null; mission_address: string | null; fox_id: string | null; fox_collection: string | null }> {
     let fox_address: string | null = null;
     let den_address: string | null = null;
+    let mission_address: string | null = null;
     let fox_id: string | null = null;
     let fox_collection: string | null = null;
 
@@ -123,8 +128,21 @@ export async function extractAddresses(innerInstructions: InnerInstruction[], su
         }
     }
 
-    console.log(`Final extracted addresses - Fox: ${fox_address}, Den: ${den_address}, Fox ID: ${fox_id}, Fox Collection: ${fox_collection}`);
-    return { fox_address, den_address, fox_id, fox_collection };
+    // Identify mission address using account keys
+    const { data: missionData, error: missionError } = await supabase
+    .from('missions')
+    .select('address')
+    .in('address', accountKeys);
+
+    if (missionError || !missionData || missionData.length === 0) {
+    console.log(`No mission address found: ${missionError ? missionError.message : 'No matching mission data'}`);
+    } else {
+    mission_address = missionData[0].address;
+    console.log(`Validated mission address: ${mission_address}`);
+    }
+
+    console.log(`Final extracted addresses - Fox: ${fox_address}, Den: ${den_address}, Mission: ${mission_address}, Fox ID: ${fox_id}, Fox Collection: ${fox_collection}`);
+    return { fox_address, den_address, mission_address, fox_id, fox_collection };
 }
 
 export function extractMissionResult(logMessages: string[]): boolean {

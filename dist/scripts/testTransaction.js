@@ -45,9 +45,11 @@ async function testTransaction() {
     console.log('Full JSON response:', JSON.stringify(transaction, null, 2));
     const { logMessages, innerInstructions, preTokenBalances, postTokenBalances } = transaction.meta;
     const blocktime = transaction.blockTime;
-    const { fox_address, den_address, fox_id, fox_collection } = await extractAddresses(innerInstructions, supabase);
+    // Extract pubkey strings from accountKeys
+    const accountKeys = transaction.transaction.message.accountKeys.map(key => key.pubkey);
+    const { fox_address, den_address, mission_address, fox_id, fox_collection } = await extractAddresses(innerInstructions, accountKeys, supabase);
     const fox_owner = extractFoxOwner(innerInstructions);
-    console.log(`Final extracted addresses - Fox: ${fox_address}, Den: ${den_address}, Fox ID: ${fox_id}, Fox Collection: ${fox_collection}`);
+    console.log(`Final extracted addresses - Fox: ${fox_address}, Den: ${den_address}, Fox ID: ${fox_id}, Fox Collection: ${fox_collection}, Mission: ${mission_address}`);
     const mission_result = extractMissionResult(logMessages);
     const den_bonus = extractDenBonus(logMessages);
     const fame_before = extractFameBefore(logMessages);
