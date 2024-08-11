@@ -11,7 +11,21 @@ export default async function handler(req: NextApiRequest, res: NextApiResponse)
 
             for (const transaction of transactions) {
                 console.log("Processing transaction:", transaction);
-                console.log("innerInstructions:", transaction.meta.innerInstructions);
+                // Log the inner instructions
+                const innerInstructions = transaction.meta.innerInstructions;
+                console.log("Inner Instructions:", innerInstructions);
+
+                // Check if innerInstructions exist and log each inner instruction
+                if (innerInstructions && Array.isArray(innerInstructions)) {
+                    innerInstructions.forEach((innerInstruction, index) => {
+                        console.log(`Inner Instruction ${index}:`, innerInstruction);
+                        innerInstruction.instructions.forEach((instruction: any, instIndex: any) => {
+                            console.log(`  Instruction ${instIndex}:`, instruction);
+                        });
+                    });
+                } else {
+                    console.log("No inner instructions found.");
+                }
                 const accountKeys = transaction.transaction.message.accountKeys as AccountKey[];
 
                 console.log("Full transaction payload:", transaction.transaction);
