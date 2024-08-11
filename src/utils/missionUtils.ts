@@ -46,6 +46,9 @@ async function processEndMission(transaction: Transaction, supabase: SupabaseCli
     // Extract pubkey strings from accountKeys
     const accountKeys = transaction.transaction.message.accountKeys.map(key => key.pubkey);
 
+    console.log('Processing EndMissionv2 transaction:', signature);
+    console.log ('Inner Instructions:', innerInstructions);
+    console.log ('Account Keys:', accountKeys);
     const { fox_address, den_address, mission_address, fox_id, fox_collection } = await extractAddresses(innerInstructions, accountKeys, supabase);
     const fox_owner = extractFoxOwner(innerInstructions, true);
 
@@ -131,6 +134,9 @@ async function processStartMission(transaction: Transaction, supabase: SupabaseC
     // Extract pubkey strings from accountKeys
     const accountKeys = transaction.transaction.message.accountKeys.map(key => key.pubkey);
 
+    console.log('Processing EndMissionv2 transaction:', signature);
+    console.log ('Inner Instructions:', innerInstructions);
+    console.log ('Account Keys:', accountKeys);
     const { fox_address, den_address, mission_address, fox_id, fox_collection } = await extractAddresses(innerInstructions, accountKeys, supabase);
     const fox_owner = extractFoxOwner(innerInstructions, false);
 
