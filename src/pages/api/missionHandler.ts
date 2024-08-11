@@ -1,6 +1,7 @@
 import type { NextApiRequest, NextApiResponse } from 'next';
 import { processMissionEvent } from '../../utils/missionUtils';
 import { supabase } from '../../utils/supabaseClient'; // Import your Supabase client
+import { AccountKey } from '../../types'; // Import the AccountKey type
 
 export default async function handler(req: NextApiRequest, res: NextApiResponse) {
     if (req.method === 'POST') {
@@ -9,6 +10,11 @@ export default async function handler(req: NextApiRequest, res: NextApiResponse)
             console.log("Received payload:", req.body);
 
             for (const transaction of transactions) {
+                console.log("Processing transaction:", transaction);
+                console.log("innerInstructions:", transaction.meta.innerInstructions);
+                const accountKeys = transaction.transaction.message.accountKeys as AccountKey[];
+
+                console.log("transaction.message.accountKeys:", accountKeys.map((key: AccountKey) => key.pubkey));
                 await processMissionEvent(transaction, supabase); // Pass both transaction and supabase
             }
 

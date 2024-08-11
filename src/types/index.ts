@@ -60,3 +60,8 @@ export interface TokenBalance {
         uiAmount: number | null;
     };
 }
+
+export interface AccountKey {
+    pubkey: string;
+}
+
