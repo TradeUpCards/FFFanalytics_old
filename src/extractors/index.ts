@@ -51,7 +51,7 @@ export async function extractAddresses(
 
     for (const innerInstruction of innerInstructions) {
         console.log(`Processing inner instruction: ${innerInstruction.index}`);
-        console.log(`Instructions: ${innerInstruction.instructions}`);
+        console.log(JSON.stringify(innerInstruction.instructions, null, 2));
         for (const instruction of innerInstruction.instructions) {
             if (instruction.parsed?.type === 'thawAccount' && instruction.parsed.info?.mint) {
                 const mintAddress = instruction.parsed.info.mint;
