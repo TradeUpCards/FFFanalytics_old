@@ -6,6 +6,8 @@ export default async function handler(req: NextApiRequest, res: NextApiResponse)
         try {
             const transactions = req.body; // Helius sends an array of transaction signatures
             console.log("Received payload:", transactions);
+            console.log("transaction.message:", transactions.message);
+            console.log("transaction.signatures:", transactions.signatures);
 
             for (const signature of transactions) {
                 console.log("Processing signature:", signature.signature);
