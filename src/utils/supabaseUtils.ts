@@ -1,7 +1,6 @@
 import { supabase } from "./supabaseClient.js";    
 import { fameLevels } from '../utils/readFameLevels'; // Adjust the path as needed
 import { determineFameLevel } from './determineFameLevel.js'; // Import your fame level determination function
-import { timeStamp } from "console";
 
 export async function insertOtherTransaction(
     signature: string,
@@ -48,7 +47,7 @@ export async function insertFailedTransaction(
 }
 
 // Function to calculate the tier based on the provided logic
-const calculateTier = (fox: any, fameLevels: any) => {
+const calculateTier = (fox: any) => {
   // Determine the fame level
   const fameLevel = determineFameLevel(fox.xp, fameLevels);
     if (fox.attributeByName.Edition != null) {
@@ -72,7 +71,7 @@ export const insertFoxSnapshotsIntoDatabase = async (snapshots: any[]) => {
     try {
       for (const snapshot of snapshots) {
         // Determine the tier for the snapshot (optional)
-        // const tier = calculateTier(snapshot, fameLevels);
+        // const tier = calculateTier(snapshot);
         // snapshot.tier = tier;
   
         // Prepare the data for insertion, with defaults for missing values
