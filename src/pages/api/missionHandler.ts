@@ -5,15 +5,27 @@ export default async function handler(req: NextApiRequest, res: NextApiResponse)
     if (req.method === 'POST') {
         try {
             const transactions = req.body; // Helius sends an array of transaction signatures
-            console.log("Received payload:", transactions);
+
+            // Flag to stop checking further signatures once a relevant transaction is found
+            let foundRelevantTransaction = false;
 
             for (const transaction of transactions) {
-                console.log("transaction.message:", transaction.transaction.message);
-                console.log("transaction.signatures:", transaction.transaction.signatures);
-                    console.log("Processing signature:", transaction.signature);
+                // Iterate over all signatures in the transaction
+                for (const signature of transaction.transaction.signatures) {
+                    console.log("Processing signature:", signature);
 
-                // Check for mission transaction with only the signature
-                await checkForMissionTrx(transaction.signature);
+                    // Check if the signature fits the selected transaction types
+                    const isRelevant = await checkForMissionTrx(signature);
+
+                    if (isRelevant) {
+                        foundRelevantTransaction = true;
+                        break; // Stop checking other signatures if one matches
+                    }
+                }
+
+                if (foundRelevantTransaction) {
+                    break; // Stop checking other transactions if a relevant one is found
+                }
             }
 
             res.status(200).json({ success: true });

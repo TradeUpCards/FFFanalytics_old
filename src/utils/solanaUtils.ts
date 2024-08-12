@@ -369,7 +369,7 @@ export async function getTransaction(signature: string): Promise<Transaction | n
     }
 }
 
-export async function checkForMissionTrx(signature: string) {
+export async function checkForMissionTrx(signature: string): Promise<boolean> {
     try {
         // Fetch the transaction details using the signature
         const transaction = await getTransaction(signature);
@@ -382,16 +382,21 @@ export async function checkForMissionTrx(signature: string) {
             // Determine the type of transaction and process accordingly
             if (isEndMissionTransaction(logMessages)) {
                 await processEndMission(transaction, supabase, fameLevels);
+                return true;
             } else if (isStartMissionTransaction(logMessages)) {
                 await processStartMission(transaction, supabase, fameLevels);
+                return true;
             } else {
                 // Log non-EndMission and non-StartMission transactions
                 await insertOtherTransaction(signature, trxTypes);
+                return false;
             }
         } else {
             console.log(`Transaction not found for signature: ${signature}`);
+            return false;
         }
     } catch (error) {
         console.error(`Error checking transaction type for signature ${signature}:`, error);
+        return false;
     }
 }
