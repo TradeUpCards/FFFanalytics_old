@@ -8,8 +8,8 @@ export default async function handler(req: NextApiRequest, res: NextApiResponse)
             console.log("Received payload:", transactions);
 
             for (const transaction of transactions) {
-                console.log("transaction.message:", transactions.transaction.message);
-                console.log("transaction.signatures:", transactions.transaction.signatures);
+                console.log("transaction.message:", transaction.transaction.message);
+                console.log("transaction.signatures:", transaction.transaction.signatures);
                     console.log("Processing signature:", transaction.signature);
 
                 // Check for mission transaction with only the signature
