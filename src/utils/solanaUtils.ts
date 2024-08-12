@@ -359,6 +359,7 @@ export async function getTransaction(signature: string): Promise<Transaction | n
             headers: { 'Content-Type': 'application/json' },
             body: JSON.stringify(payload)
         });
+        console.log("Response:", response);
 
         const result = await response.json() as RpcResponse<Transaction>;
         console.log("Transaction result:", result);
