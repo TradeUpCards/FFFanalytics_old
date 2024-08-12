@@ -340,34 +340,54 @@ export const combineFoxData = (foxAccounts: any[], foxUpgrades: any[], missionAc
 
 // Export the getTransaction function
 export async function getTransaction(signature: string): Promise<Transaction | null> {
-    const payload = {
-        jsonrpc: "2.0",
-        id: 1,
-        method: "getTransaction",
-        params: [
-            signature,
-            {
-                encoding: "jsonParsed",
-                maxSupportedTransactionVersion: 0 // Adding this parameter
-            }
-        ]
-    };
+  const payload = {
+      jsonrpc: "2.0",
+      id: 1,
+      method: "getTransaction",
+      params: [
+          signature,
+          {
+              encoding: "jsonParsed",
+              maxSupportedTransactionVersion: 0 // Adding this parameter
+          }
+      ]
+  };
 
-    try {
-        const response = await fetch(HELIUS_RPC_URL, {
-            method: 'POST',
-            headers: { 'Content-Type': 'application/json' },
-            body: JSON.stringify(payload)
-        });
-        console.log("Response:", response);
+  try {
+      const response = await fetch(HELIUS_RPC_URL, {
+          method: 'POST',
+          headers: { 'Content-Type': 'application/json' },
+          body: JSON.stringify(payload)
+      });
 
-        const result = await response.json() as RpcResponse<Transaction>;
-        console.log("Transaction result:", result);
-        return result.result;
-    } catch (error) {
-        console.error("Error fetching transaction:", error);
-        return null;
-    }
+      // Log the response status and headers
+      console.log("Response Status:", response.status);
+      console.log("Response Headers:", response.headers);
+
+      // Check if the response is okay
+      if (!response.ok) {
+          console.error("Network response was not ok:", response.statusText);
+          return null;
+      }
+
+      // Log the full response body
+      const responseBody = await response.text();
+      console.log("Full Response Body:", responseBody);
+
+      const result = JSON.parse(responseBody) as RpcResponse<Transaction>;
+
+      // Check if there's an error in the response
+      if (result.error) {
+          console.error("Error in RPC response:", result.error);
+          return null;
+      }
+
+      console.log("Transaction result:", result.result);
+      return result.result || null;
+  } catch (error) {
+      console.error("Error fetching transaction:", error);
+      return null;
+  }
 }
 
 export async function checkForMissionTrx(signature: string): Promise<boolean> {

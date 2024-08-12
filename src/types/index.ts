@@ -1,7 +1,8 @@
 export interface RpcResponse<T> {
     jsonrpc: string;
-    result: T;
+    result?: T;
     id: number;
+    error?: { code: number; message: string }; // Optional error property for error responses
 }
 
 export interface SlotResponse {
