@@ -8,24 +8,24 @@ export default async function handler(req: NextApiRequest, res: NextApiResponse)
             console.log("Processing transactions:", transactions);
 
             for (const transaction of transactions) {
-                // Extract blockTime from the transaction
-                const blockTime = transaction.blockTime;
+                // Extract blocktime from the transaction
+                const blocktime = transaction.blocktime;
 
                 // Iterate over all signatures in the transaction
                 for (const signature of transaction.transaction.signatures) {
                     console.log("Processing signature:", signature);
-                    console.log("blocktime:", blockTime);
+                    console.log("blocktime:", blocktime);
 
                     const { error } = await supabase
                         .from('trx_to_process')
-                        .insert({ signature, blockTime });
+                        .insert({ signature, blocktime });
 
                     if (error) {
                         console.error('Error inserting signature into database:', error);
                         throw new Error('Database Insertion Error');
                     }
 
-                    console.log(`Inserted signature ${signature} with blocktime ${blockTime} into trx_to_process table`);
+                    console.log(`Inserted signature ${signature} with blocktime ${blocktime} into trx_to_process table`);
                 }
             }
 
