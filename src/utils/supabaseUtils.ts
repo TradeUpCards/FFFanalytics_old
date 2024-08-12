@@ -1,5 +1,5 @@
 import { supabase } from "./supabaseClient.js";    
-import { readFameLevels } from './readFameLevels.js'; // Import your fame levels utility
+import { fameLevels } from '../utils/readFameLevels'; // Adjust the path as needed
 import { determineFameLevel } from './determineFameLevel.js'; // Import your fame level determination function
 import { timeStamp } from "console";
 
@@ -70,9 +70,6 @@ const calculateTier = (fox: any, fameLevels: any) => {
 // Function to insert combined data into the database
 export const insertFoxSnapshotsIntoDatabase = async (snapshots: any[]) => {
     try {
-      // Retrieve fame levels (assuming this function is defined elsewhere)
-      const fameLevels = await readFameLevels();
-  
       for (const snapshot of snapshots) {
         // Determine the tier for the snapshot (optional)
         // const tier = calculateTier(snapshot, fameLevels);

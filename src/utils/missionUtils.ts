@@ -16,12 +16,12 @@ import {
 } from '../extractors/index';
 import { Transaction } from '../types/index';
 import { determineFameLevel } from '../utils/determineFameLevel';
-import { readFameLevels } from '../utils/readFameLevels'; // Import the function to read fame levels from JSON
+import { fameLevels } from '../utils/readFameLevels'; // Adjust the path as needed
 import { AccountKey } from '../types';
+
 
 // Function to process a transaction and extract relevant mission event details
 export async function processMissionEvent(transaction: Transaction, supabase: SupabaseClient) {
-    const fameLevels = await readFameLevels(); // Load fame levels from the JSON file
     const { logMessages, innerInstructions, preTokenBalances, postTokenBalances, err } = transaction.meta;
 
     if (err) {
@@ -40,7 +40,7 @@ export async function processMissionEvent(transaction: Transaction, supabase: Su
 }
 
 // Function to process and decode the endMissionv2 transaction
-async function processEndMission(transaction: Transaction, supabase: SupabaseClient, fameLevels: Record<number, number>) {
+export async function processEndMission(transaction: Transaction, supabase: SupabaseClient, fameLevels: Record<number, number>) {
     const { logMessages, innerInstructions, preTokenBalances, postTokenBalances } = transaction.meta;
     const blocktime = transaction.blockTime;
     const signature = transaction.transaction.signatures[0];
@@ -128,7 +128,7 @@ if (error) {
 }
 
 // Function to process and decode the StartMission transaction
-async function processStartMission(transaction: Transaction, supabase: SupabaseClient, fameLevels: Record<number, number>) {
+export async function processStartMission(transaction: Transaction, supabase: SupabaseClient, fameLevels: Record<number, number>) {
     const { logMessages, innerInstructions } = transaction.meta;
     const blocktime = transaction.blockTime;
     const signature = transaction.transaction.signatures[0];
@@ -186,7 +186,7 @@ if (error) {
 }
 
 // Utility function to fetch fame levels
-async function getMissionAddress(accountKeys: string[], supabase: SupabaseClient): Promise<string | null> {
+export async function getMissionAddress(accountKeys: string[], supabase: SupabaseClient): Promise<string | null> {
     const { data: missions, error } = await supabase
         .from('missions')
         .select('address');
@@ -218,7 +218,7 @@ async function calculatePowers(fox_address: string | null, den_address: string |
             throw new Error(`Error fetching fox data: ${foxError ? foxError.message : 'No data found'}`);
         }
 
-        const fameLevel = determineFameLevel(fame_before, await readFameLevels());
+        const fameLevel = determineFameLevel(fame_before, fameLevels);
         fox_power = Math.floor(fameLevel * foxData.score);
     }
 

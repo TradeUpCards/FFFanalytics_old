@@ -13,6 +13,7 @@ import {
     isStartMissionTransaction, extractFame, extractTrxTypes
 } from '../extractors/index.js';
 import { insertFailedTransaction, insertOtherTransaction } from '../utils/supabaseUtils.js';
+import { getTransaction } from '../utils/solanaUtils.js';
 
 dotenv.config();
 
@@ -95,30 +96,6 @@ export class MissionResultProcessor {
         throw new Error('Failed to fetch signatures after multiple retries');
     }
 
-    async getTransaction(signature: string): Promise<Transaction | null> {
-        const payload = {
-            jsonrpc: "2.0",
-            id: 1,
-            method: "getTransaction",
-            params: [
-                signature,
-                {
-                    encoding: "jsonParsed",
-                    maxSupportedTransactionVersion: 0 // Adding this parameter
-                }
-            ]
-        };
-
-        const response = await fetch(HELIUS_RPC_URL, {
-            method: 'POST',
-            headers: { 'Content-Type': 'application/json' },
-            body: JSON.stringify(payload)
-        });
-
-        const result = await response.json() as RpcResponse<Transaction>;
-        console.log(result);
-        return result.result;
-    }
 
     async getMissionAddress(accountKeys: string[]): Promise<string | null> {
         const { data: missions, error } = await this.supabase
@@ -417,7 +394,7 @@ async processMissionResults(before?: string): Promise<void> {
                 totalSigs += newSignatures.length;
 
                 for (const signature of newSignatures) {
-                    const transaction = await this.getTransaction(signature.signature);
+                    const transaction = await getTransaction(signature.signature);
                     if (transaction) {
                         const logMessages = transaction.meta.logMessages;
                         const trxTypes = extractTrxTypes(transaction.meta.innerInstructions || []);
