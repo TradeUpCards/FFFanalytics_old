@@ -390,10 +390,61 @@ export async function getTransaction(signature: string): Promise<Transaction | n
   }
 }
 
+export async function getTransactionWithDelay(signature: string, delay: number = 5000): Promise<Transaction | null> {
+  const payload = {
+    jsonrpc: "2.0",
+    id: 1,
+    method: "getTransaction",
+    params: [
+      signature,
+      {
+        encoding: "jsonParsed",
+        maxSupportedTransactionVersion: 0
+      }
+    ]
+  };
+
+  console.log("Sending payload:", JSON.stringify(payload));
+
+  try {
+    await new Promise(resolve => setTimeout(resolve, delay)); // Add a delay before making the API call
+
+    const response = await fetch(HELIUS_RPC_URL, {
+      method: 'POST',
+      headers: { 'Content-Type': 'application/json' },
+      body: JSON.stringify(payload)
+    });
+
+    console.log("Response Status:", response.status);
+    console.log("Response Headers:", response.headers);
+
+    if (!response.ok) {
+      console.error("Network response was not ok:", response.statusText);
+      return null;
+    }
+
+    const responseBody = await response.text();
+    console.log("Full Response Body:", responseBody);
+
+    const result = JSON.parse(responseBody) as RpcResponse<Transaction>;
+
+    if (result.error) {
+      console.error("Error in RPC response:", result.error);
+      return null;
+    }
+
+    console.log("Transaction result:", result.result);
+    return result.result || null;
+  } catch (error) {
+    console.error("Error fetching transaction:", error);
+    return null;
+  }
+}
+
 export async function checkForMissionTrx(signature: string): Promise<boolean> {
     try {
         // Fetch the transaction details using the signature
-        const transaction = await getTransaction(signature);
+        const transaction = await getTransactionWithDelay(signature);
         if (transaction) {
             // Extract necessary details from the transaction
             const logMessages = transaction.meta.logMessages;
