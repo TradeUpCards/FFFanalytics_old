@@ -10,6 +10,7 @@ console.log("Processing transactions:", transactions);
                 // Iterate over all signatures in the transaction
                 for (const signature of transaction.transaction.signatures) {
                     console.log("Processing signature:", signature);
+                    console.log("blocktime:", transaction.blockTime);
 
                     const { error } = await supabase
                     .from('trx_to_process')
