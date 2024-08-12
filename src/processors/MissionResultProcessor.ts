@@ -113,7 +113,7 @@ export class MissionResultProcessor {
 
     async calculatePowers(fox_address: string | null, den_address: string | null, fame_before: number, fox_collection: string | null): Promise<{ fox_power: number; den_power: number | null }> {
         let fox_power = 0;
-        let den_power = null;
+        let den_power: number | null = null;
 
         if (fox_address && fox_collection) {
             const { data: foxData, error: foxError } = await this.supabase

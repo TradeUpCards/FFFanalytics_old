@@ -1,16 +1,13 @@
 import dotenv from 'dotenv';
-import fetch from 'node-fetch';
+ 
 import { createClient } from '@supabase/supabase-js';
-import { RpcResponse, Transaction, AccountKey } from '../types/index';
-import { 
-    extractFoxOwner, extractAddresses, extractMissionResult, 
-    extractDenBonus, extractFameBefore, extractFameAfter, 
-    extractMissionFame, extractChestsBase, extractTier,
-    extractTokenBalanceChanges, isEndMissionTransaction 
-} from '../extractors/index';
+import { RpcResponse, Transaction } from '../types/index';
+import { Keypair } from '@solana/web3.js';
+import { extractFoxOwner, extractAddresses, extractMissionResult, extractDenBonus, extractFameBefore, extractFameAfter, extractMissionFame, extractChestsBase, extractTier, extractTokenBalanceChanges, isEndMissionTransaction } from '../extractors'
 import { determineFameLevel } from '../utils/determineFameLevel';
 import { fameLevels } from '../utils/readFameLevels';
 import { getTransaction } from '../utils/solanaUtils';
+
 
 dotenv.config();
 
@@ -38,8 +35,8 @@ async function testTransaction() {
     const { logMessages, innerInstructions, preTokenBalances, postTokenBalances } = transaction.meta;
     const blocktime = transaction.blockTime;
     // Extract pubkey strings from accountKeys
-    const accountKeys = transaction.transaction.message.accountKeys as AccountKey[];
-
+    const accountKeys = transaction.transaction.message.accountKeys as unknown as typeof Keypair[];
+    // @ts-ignore
     const { fox_address, den_address, mission_address, fox_id, fox_collection } = await extractAddresses(innerInstructions,accountKeys, supabase);
     const fox_owner = extractFoxOwner(innerInstructions);
 
@@ -104,7 +101,7 @@ async function testTransaction() {
 
 async function calculatePowers(fox_address: string | null, den_address: string | null, fame_before: number, fox_collection: string | null): Promise<{ fox_power: number; den_power: number | null }> {
     let fox_power = 0;
-    let den_power = null;
+    let den_power: number | null = null;
 
     if (fox_address && fox_collection) {
         const { data: foxData, error: foxError } = await supabase
