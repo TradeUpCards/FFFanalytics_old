@@ -1,16 +1,16 @@
 // solanaUtils.js
 import { Connection, Keypair, PublicKey, Transaction as SolanaTransaction, Signer } from '@solana/web3.js';
 import { AnchorProvider, Program, Idl, setProvider } from '@project-serum/anchor';
-import { IDL, Staking } from '../lib/idl/missionsIdl.js'; // Update the path if necessary
+import { IDL, Staking } from '../lib/idl/missionsIdl'; // Update the path if necessary
 import { SupabaseClient } from '@supabase/supabase-js';
 import { Signature, RpcResponse, Transaction } from '../types'; // Import Signature from your types file
 import dotenv from 'dotenv';
-import { insertFoxSnapshotsIntoDatabase } from './supabaseUtils.js';
+import { insertFoxSnapshotsIntoDatabase } from './supabaseUtils';
 import { processEndMission, processStartMission } from './missionUtils'; // Adjust imports as needed
 import { extractTrxTypes, isEndMissionTransaction, isStartMissionTransaction } from '../extractors/index'; // Adjust imports as needed
 import { insertOtherTransaction } from './supabaseUtils'; // Adjust imports as needed
 import { fameLevels } from '../utils/readFameLevels'; // Adjust the path as needed
-import { supabase } from './supabaseClient.js';
+import { supabase } from './supabaseClient';
 dotenv.config();
 
 // Validate that the environment variables are set
@@ -378,7 +378,7 @@ export async function checkForMissionTrx(signature: string) {
             const logMessages = transaction.meta.logMessages;
             const trxTypes = extractTrxTypes(transaction.meta.innerInstructions || []);
             console.log(`Transaction types: ${trxTypes}`);
-            
+
             // Determine the type of transaction and process accordingly
             if (isEndMissionTransaction(logMessages)) {
                 await processEndMission(transaction, supabase, fameLevels);

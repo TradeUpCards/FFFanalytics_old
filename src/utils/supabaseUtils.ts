@@ -1,6 +1,6 @@
-import { supabase } from "./supabaseClient.js";    
+import { supabase } from "./supabaseClient";    
 import { fameLevels } from '../utils/readFameLevels'; // Adjust the path as needed
-import { determineFameLevel } from './determineFameLevel.js'; // Import your fame level determination function
+import { determineFameLevel } from './determineFameLevel'; // Import your fame level determination function
 
 export async function insertOtherTransaction(
     signature: string,
