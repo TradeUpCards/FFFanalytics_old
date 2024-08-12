@@ -444,7 +444,7 @@ export async function getTransactionWithDelay(signature: string, delay: number =
 export async function checkForMissionTrx(signature: string): Promise<boolean> {
     try {
         // Fetch the transaction details using the signature
-        const transaction = await getTransactionWithDelay(signature);
+        const transaction = await getTransactionWithDelay(signature,10000);
         if (transaction) {
             // Extract necessary details from the transaction
             const logMessages = transaction.meta.logMessages;
