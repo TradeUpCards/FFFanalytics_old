@@ -3,6 +3,7 @@ import dotenv from 'dotenv';
 import { determineFameLevel } from '../utils/determineFameLevel.js';
 import { extractFoxOwner, extractAddresses, extractMissionResult, extractDenBonus, extractFameBefore, extractFameAfter, extractMissionFame, extractChestsBase, extractTier, extractTokenBalanceChanges, isEndMissionTransaction, isStartMissionTransaction, extractFame, extractTrxTypes } from '../extractors/index.js';
 import { insertFailedTransaction, insertOtherTransaction } from '../utils/supabaseUtils.js';
+import { getTransaction } from '../utils/solanaUtils.js';
 dotenv.config();
 const HELIUS_API_KEY = process.env.HELIUS_API_KEY;
 if (!HELIUS_API_KEY) {
@@ -75,28 +76,6 @@ export class MissionResultProcessor {
         }
         throw new Error('Failed to fetch signatures after multiple retries');
     }
-    async getTransaction(signature) {
-        const payload = {
-            jsonrpc: "2.0",
-            id: 1,
-            method: "getTransaction",
-            params: [
-                signature,
-                {
-                    encoding: "jsonParsed",
-                    maxSupportedTransactionVersion: 0 // Adding this parameter
-                }
-            ]
-        };
-        const response = await fetch(HELIUS_RPC_URL, {
-            method: 'POST',
-            headers: { 'Content-Type': 'application/json' },
-            body: JSON.stringify(payload)
-        });
-        const result = await response.json();
-        console.log(result);
-        return result.result;
-    }
     async getMissionAddress(accountKeys) {
         const { data: missions, error } = await this.supabase
             .from('missions')
@@ -144,7 +123,7 @@ export class MissionResultProcessor {
             const { logMessages, innerInstructions, preTokenBalances, postTokenBalances, err } = transaction.meta;
             blocktime = transaction.blockTime;
             // Extract pubkey strings from accountKeys
-            const accountKeys = transaction.transaction.message.accountKeys.map(key => key.pubkey);
+            const accountKeys = transaction.transaction.message.accountKeys;
             if (err) {
                 console.log(`Transaction with signature ${signature} failed. Skipping.`);
                 await insertFailedTransaction(signature);
@@ -237,7 +216,7 @@ export class MissionResultProcessor {
         try {
             const { logMessages, innerInstructions, err } = transaction.meta;
             // Extract pubkey strings from accountKeys
-            const accountKeys = transaction.transaction.message.accountKeys.map(key => key.pubkey);
+            const accountKeys = transaction.transaction.message.accountKeys;
             console.log('Account keys:', accountKeys);
             blocktime = transaction.blockTime;
             if (err) {
@@ -345,7 +324,7 @@ export class MissionResultProcessor {
                     console.log(`Processing ${newSignatures.length} new signatures out of ${signatures.length}`);
                     totalSigs += newSignatures.length;
                     for (const signature of newSignatures) {
-                        const transaction = await this.getTransaction(signature.signature);
+                        const transaction = await getTransaction(signature.signature);
                         if (transaction) {
                             const logMessages = transaction.meta.logMessages;
                             const trxTypes = extractTrxTypes(transaction.meta.innerInstructions || []);

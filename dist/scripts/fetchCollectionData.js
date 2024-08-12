@@ -2,10 +2,9 @@ import { fetchCollectionMetadata } from './fetchMetadata';
 import { parseMetadata } from './parseMetadata';
 import { saveToSupabase } from './saveToSupabase';
 import { readTraitRarities } from '../utils/readTraitRarities';
-import { readFameLevels } from '../utils/readFameLevels';
+import { fameLevels } from '../utils/readFameLevels'; // Adjust the path as needed
 async function main() {
     const traitRarities = await readTraitRarities();
-    const fameLevels = await readFameLevels();
     const collections = ['FFF', 'TFF', 'Dens', 'F&F'];
     for (const collection of collections) {
         console.log(`Fetching metadata for ${collection}...`);

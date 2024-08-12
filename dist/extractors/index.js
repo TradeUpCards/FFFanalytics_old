@@ -43,6 +43,8 @@ export async function extractAddresses(innerInstructions, accountKeys, supabase)
     let fox_id = null;
     let fox_collection = null;
     for (const innerInstruction of innerInstructions) {
+        console.log(`Processing inner instruction: ${innerInstruction.index}`);
+        console.log(JSON.stringify(innerInstruction.instructions, null, 2));
         for (const instruction of innerInstruction.instructions) {
             if (instruction.parsed?.type === 'thawAccount' && instruction.parsed.info?.mint) {
                 const mintAddress = instruction.parsed.info.mint;

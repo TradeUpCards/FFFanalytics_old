@@ -6,7 +6,7 @@
   "scripts": {
     "kill": "taskkill /f /im node.exe",
     "dev": "next dev",
-    "build": "next build",
+    "build": "next build && tsc && tsc-alias",
     "start": "next start",
     "lint": "next lint",
     "tsc:scripts": "tsc -p tsconfig.scripts.json",
@@ -26,7 +26,7 @@
     "csv-parser": "^3.0.0",
     "dotenv": "^16.4.5",
     "json2csv": "^6.0.0-alpha.2",
-    "next": "14.2.5",
+    "next": "^14.2.5",
     "node-fetch": "^3.3.2",
     "react": "^18",
     "react-dom": "^18",
@@ -35,8 +35,8 @@
   "devDependencies": {
     "@types/json2csv": "^5.0.7",
     "@types/node": "^20.14.13",
-    "@types/react": "^18",
-    "@types/react-dom": "^18",
+    "@types/react": "^18.3.3",
+    "@types/react-dom": "^18.3.0",
     "eslint": "^8",
     "eslint-config-next": "14.2.5",
     "postcss": "^8",

@@ -1,0 +1,421 @@
+npm run fetch-trx
+
+> fffanalytics@0.1.0 fetch-trx
+> npm run tsc:scripts && node dist/scripts/fetchAndInsertMissionResults.js
+
+
+> fffanalytics@0.1.0 tsc:scripts
+> tsc -p tsconfig.scripts.json
+
+Earliest expiry timestamp: 1717344300
+Starting to fetch signatures
+Fetching signatures from Helius with URL: https://mainnet.helius-rpc.com/?api-key=6d7fe190-b722-44a2-a219-3b96ad0a88bf
+Fetched 100 signatures
+blocktime: 1722235119
+Found thawAccount with mint address: 3bGaW2iR9JYSVXpgecNC2HN9A92VAvRqTSobWTHYYNMv
+Validated fox address: 3bGaW2iR9JYSVXpgecNC2HN9A92VAvRqTSobWTHYYNMv
+Final extracted addresses - Fox: 3bGaW2iR9JYSVXpgecNC2HN9A92VAvRqTSobWTHYYNMv, Den: null
+Calculating powers for fox_id: 1294, fox_collection: FFF, den_address: null
+Error fetching fox data for fox_id: 1294, fox_collection: FFF
+Error processing transaction with signature 4Ve4KJrAEKnc4dAaCrCrnvE3RkA5P85K81WUPnqqgXBPaZjN7ERbF867A3hyg1zinqnqGdkMKjojHFRonEVSyyMG: Error: Error fetching fox data: JSON object requested, multiple (or no) rows returned
+    at MissionResultProcessor.calculatePowers (file:///C:/Users/User/OneDrive/Documents/dev/fffanalytics/dist/processors/MissionResultProcessor.js:133:19)
+    at process.processTicksAndRejections (node:internal/process/task_queues:95:5)
+    at async MissionResultProcessor.insertMissionResult (file:///C:/Users/User/OneDrive/Documents/dev/fffanalytics/dist/processors/MissionResultProcessor.js:196:46)
+    at async MissionResultProcessor.processMissionResults (file:///C:/Users/User/OneDrive/Documents/dev/fffanalytics/dist/processors/MissionResultProcessor.js:240:29)
+    at async main (file:///C:/Users/User/OneDrive/Documents/dev/fffanalytics/dist/scripts/fetchAndInsertMissionResults.js:13:9)
+blocktime: 1722202090
+Found thawAccount with mint address: rfAMz3F6wCrnGguKqjqTABnopG6LDEf1jmEaBVBGyUe
+Validated fox address: rfAMz3F6wCrnGguKqjqTABnopG6LDEf1jmEaBVBGyUe
+Final extracted addresses - Fox: rfAMz3F6wCrnGguKqjqTABnopG6LDEf1jmEaBVBGyUe, Den: null
+Calculating powers for fox_id: 3337, fox_collection: FFF, den_address: null
+Error fetching fox data for fox_id: 3337, fox_collection: FFF
+Error processing transaction with signature 3h1DUkbC7W8u6FXggrtx8oBr4U9stYun2EBG7dsfnBVrsoGyxQtgBoZpsA4GH1JhAWgPNw3a5ytmcHHmWBESF3Hz: Error: Error fetching fox data: JSON object requested, multiple (or no) rows returned
+    at MissionResultProcessor.calculatePowers (file:///C:/Users/User/OneDrive/Documents/dev/fffanalytics/dist/processors/MissionResultProcessor.js:133:19)
+    at process.processTicksAndRejections (node:internal/process/task_queues:95:5)
+    at async MissionResultProcessor.insertMissionResult (file:///C:/Users/User/OneDrive/Documents/dev/fffanalytics/dist/processors/MissionResultProcessor.js:196:46)
+    at async MissionResultProcessor.processMissionResults (file:///C:/Users/User/OneDrive/Documents/dev/fffanalytics/dist/processors/MissionResultProcessor.js:240:29)
+    at async main (file:///C:/Users/User/OneDrive/Documents/dev/fffanalytics/dist/scripts/fetchAndInsertMissionResults.js:13:9)
+blocktime: 1722029506
+Found thawAccount with mint address: BZeKG3xvKNn1ygxT2x6MLsqk5ctLDdsSvwXvGZYUNQ6
+Validated fox address: BZeKG3xvKNn1ygxT2x6MLsqk5ctLDdsSvwXvGZYUNQ6
+Final extracted addresses - Fox: BZeKG3xvKNn1ygxT2x6MLsqk5ctLDdsSvwXvGZYUNQ6, Den: null
+Calculating powers for fox_id: 7924, fox_collection: FFF, den_address: null
+Inserting mission result for signature: UhkxC8jhiQcs3tQxijkoccKTYtTYrqPyjeUWCZyvBGTz4Q3hWR3j4mfbuz4DN4fGXS4EH8oxNSsU27Vxu7FmKeT, fox_id: 7924, fox_owner: 9AyTVSEsmBjTQz3PRarQCvGqqcjK1CvBTq8CwEkXZRwm
+Mission result for signature UhkxC8jhiQcs3tQxijkoccKTYtTYrqPyjeUWCZyvBGTz4Q3hWR3j4mfbuz4DN4fGXS4EH8oxNSsU27Vxu7FmKeT already exists. Skipping insertion.
+blocktime: 1722029506
+Found thawAccount with mint address: 4VxecpKfgh4huPwvXBLyoW6KwKHh79AMLnjgYD5ozyXg
+Validated fox address: 4VxecpKfgh4huPwvXBLyoW6KwKHh79AMLnjgYD5ozyXg
+Final extracted addresses - Fox: 4VxecpKfgh4huPwvXBLyoW6KwKHh79AMLnjgYD5ozyXg, Den: null
+Calculating powers for fox_id: 889, fox_collection: FFF, den_address: null
+Error fetching fox data for fox_id: 889, fox_collection: FFF
+Error processing transaction with signature 2VoSYNkPv3GKxUpMVPhsPXJfLGQH765pL5yWbEMeq9nurnpJCCK3vDVMBXdc2yjA52ijiQovqwQyE5NcEytb93TT: Error: Error fetching fox data: JSON object requested, multiple (or no) rows returned
+    at MissionResultProcessor.calculatePowers (file:///C:/Users/User/OneDrive/Documents/dev/fffanalytics/dist/processors/MissionResultProcessor.js:133:19)
+    at process.processTicksAndRejections (node:internal/process/task_queues:95:5)
+    at async MissionResultProcessor.insertMissionResult (file:///C:/Users/User/OneDrive/Documents/dev/fffanalytics/dist/processors/MissionResultProcessor.js:196:46)
+    at async MissionResultProcessor.processMissionResults (file:///C:/Users/User/OneDrive/Documents/dev/fffanalytics/dist/processors/MissionResultProcessor.js:240:29)
+    at async main (file:///C:/Users/User/OneDrive/Documents/dev/fffanalytics/dist/scripts/fetchAndInsertMissionResults.js:13:9)
+blocktime: 1722029504
+Found thawAccount with mint address: 31uyLFWBK4z2zuEuBfvzuzpXNHGqxVguHPd459Gjegr4
+Validated fox address: 31uyLFWBK4z2zuEuBfvzuzpXNHGqxVguHPd459Gjegr4
+Found thawAccount with mint address: CeFKTEGapuFNdLsDwkhoEmKohyWE7zJymhuxGebVg72X
+Address CeFKTEGapuFNdLsDwkhoEmKohyWE7zJymhuxGebVg72X is not a fox: JSON object requested, multiple (or no) rows returned
+Validated den address: CeFKTEGapuFNdLsDwkhoEmKohyWE7zJymhuxGebVg72X
+Final extracted addresses - Fox: 31uyLFWBK4z2zuEuBfvzuzpXNHGqxVguHPd459Gjegr4, Den: CeFKTEGapuFNdLsDwkhoEmKohyWE7zJymhuxGebVg72X
+Calculating powers for fox_id: 4845, fox_collection: FFF, den_address: CeFKTEGapuFNdLsDwkhoEmKohyWE7zJymhuxGebVg72X
+Error fetching fox data for fox_id: 4845, fox_collection: FFF
+Error processing transaction with signature 5XkXMPtqMGWmXfUCQrFoFj5Rm56WCs5rvE6me6XPfVJdBFF7p7gnMCnpXTPniuaReDatmZfQMjf7x8eXo5kd1iEv: Error: Error fetching fox data: JSON object requested, multiple (or no) rows returned
+    at MissionResultProcessor.calculatePowers (file:///C:/Users/User/OneDrive/Documents/dev/fffanalytics/dist/processors/MissionResultProcessor.js:133:19)
+    at process.processTicksAndRejections (node:internal/process/task_queues:95:5)
+    at async MissionResultProcessor.insertMissionResult (file:///C:/Users/User/OneDrive/Documents/dev/fffanalytics/dist/processors/MissionResultProcessor.js:196:46)
+    at async MissionResultProcessor.processMissionResults (file:///C:/Users/User/OneDrive/Documents/dev/fffanalytics/dist/processors/MissionResultProcessor.js:240:29)
+    at async main (file:///C:/Users/User/OneDrive/Documents/dev/fffanalytics/dist/scripts/fetchAndInsertMissionResults.js:13:9)
+blocktime: 1721829580
+Found thawAccount with mint address: 6mYrmHeHtK1cfn6ZkiWaXaeLVaTrxTFAujnKpNjUZSx9
+Validated fox address: 6mYrmHeHtK1cfn6ZkiWaXaeLVaTrxTFAujnKpNjUZSx9
+Final extracted addresses - Fox: 6mYrmHeHtK1cfn6ZkiWaXaeLVaTrxTFAujnKpNjUZSx9, Den: null
+Calculating powers for fox_id: 4358, fox_collection: FFF, den_address: null
+Error fetching fox data for fox_id: 4358, fox_collection: FFF
+Error processing transaction with signature 287oyVBfQKFhWoWdaTCrsomULoPuDmYfFjGsGpCmFSJhMqSL8ah8p45MPQ18w6ywHYWpmUzBBVyxsZfCNNFq6xqV: Error: Error fetching fox data: JSON object requested, multiple (or no) rows returned
+    at MissionResultProcessor.calculatePowers (file:///C:/Users/User/OneDrive/Documents/dev/fffanalytics/dist/processors/MissionResultProcessor.js:133:19)
+    at process.processTicksAndRejections (node:internal/process/task_queues:95:5)
+    at async MissionResultProcessor.insertMissionResult (file:///C:/Users/User/OneDrive/Documents/dev/fffanalytics/dist/processors/MissionResultProcessor.js:196:46)
+    at async MissionResultProcessor.processMissionResults (file:///C:/Users/User/OneDrive/Documents/dev/fffanalytics/dist/processors/MissionResultProcessor.js:240:29)
+    at async main (file:///C:/Users/User/OneDrive/Documents/dev/fffanalytics/dist/scripts/fetchAndInsertMissionResults.js:13:9)
+blocktime: 1721829579
+Found thawAccount with mint address: 2jZq2eQeLQRZiFext6Wi42FfDchnvShzcBsgiDFdb68W
+Validated fox address: 2jZq2eQeLQRZiFext6Wi42FfDchnvShzcBsgiDFdb68W
+Final extracted addresses - Fox: 2jZq2eQeLQRZiFext6Wi42FfDchnvShzcBsgiDFdb68W, Den: null
+Calculating powers for fox_id: 3129, fox_collection: FFF, den_address: null
+Error fetching fox data for fox_id: 3129, fox_collection: FFF
+Error processing transaction with signature 4C33qP35nfwcx45mxFZV4vh7AEqquTwUPaBzNU8nJEYru884GquGFqi8ZL7ZpaHVdBbS8jcCKAJzvX6og7PzoQL4: Error: Error fetching fox data: JSON object requested, multiple (or no) rows returned
+    at MissionResultProcessor.calculatePowers (file:///C:/Users/User/OneDrive/Documents/dev/fffanalytics/dist/processors/MissionResultProcessor.js:133:19)
+    at process.processTicksAndRejections (node:internal/process/task_queues:95:5)
+    at async MissionResultProcessor.insertMissionResult (file:///C:/Users/User/OneDrive/Documents/dev/fffanalytics/dist/processors/MissionResultProcessor.js:196:46)
+    at async MissionResultProcessor.processMissionResults (file:///C:/Users/User/OneDrive/Documents/dev/fffanalytics/dist/processors/MissionResultProcessor.js:240:29)
+    at async main (file:///C:/Users/User/OneDrive/Documents/dev/fffanalytics/dist/scripts/fetchAndInsertMissionResults.js:13:9)
+blocktime: 1721225475
+Found thawAccount with mint address: 4QquAXsy3hvHWFDsZxK6uiqXXEy7UCtPFQY5r3NDddtU
+^C
+
+TradeUp@DESKTOP-N4A35D6 MINGW64 ~/OneDrive/Documents/dev/fffanalytics (main)
+$ npm run fetch-trx
+
+> fffanalytics@0.1.0 fetch-trx
+> npm run tsc:scripts && node dist/scripts/fetchAndInsertMissionResults.js
+
+
+> fffanalytics@0.1.0 tsc:scripts
+> tsc -p tsconfig.scripts.json
+
+Earliest expiry timestamp: 1717344300
+Starting to fetch signatures
+Fetching signatures from Helius with URL: https://mainnet.helius-rpc.com/?api-key=6d7fe190-b722-44a2-a219-3b96ad0a88bf
+Fetched 100 signatures
+blocktime: 1722235119
+Found thawAccount with mint address: 3bGaW2iR9JYSVXpgecNC2HN9A92VAvRqTSobWTHYYNMv
+Validated fox address: 3bGaW2iR9JYSVXpgecNC2HN9A92VAvRqTSobWTHYYNMv
+Final extracted addresses - Fox: 3bGaW2iR9JYSVXpgecNC2HN9A92VAvRqTSobWTHYYNMv, Den: null
+Calculating powers for fox_address: 3bGaW2iR9JYSVXpgecNC2HN9A92VAvRqTSobWTHYYNMv, den_address: null
+Inserting mission result for signature: 4Ve4KJrAEKnc4dAaCrCrnvE3RkA5P85K81WUPnqqgXBPaZjN7ERbF867A3hyg1zinqnqGdkMKjojHFRonEVSyyMG, fox_address: 3bGaW2iR9JYSVXpgecNC2HN9A92VAvRqTSobWTHYYNMv, fox_owner: 9Gp1sFu2tz66n5soF4auht1usfr44ZiLX1xJBJXJzsbT
+Mission result for signature 4Ve4KJrAEKnc4dAaCrCrnvE3RkA5P85K81WUPnqqgXBPaZjN7ERbF867A3hyg1zinqnqGdkMKjojHFRonEVSyyMG already exists. Skipping insertion.
+blocktime: 1722202090
+Found thawAccount with mint address: rfAMz3F6wCrnGguKqjqTABnopG6LDEf1jmEaBVBGyUe
+Validated fox address: rfAMz3F6wCrnGguKqjqTABnopG6LDEf1jmEaBVBGyUe
+Final extracted addresses - Fox: rfAMz3F6wCrnGguKqjqTABnopG6LDEf1jmEaBVBGyUe, Den: null
+Calculating powers for fox_address: rfAMz3F6wCrnGguKqjqTABnopG6LDEf1jmEaBVBGyUe, den_address: null
+Inserting mission result for signature: 3h1DUkbC7W8u6FXggrtx8oBr4U9stYun2EBG7dsfnBVrsoGyxQtgBoZpsA4GH1JhAWgPNw3a5ytmcHHmWBESF3Hz, fox_address: rfAMz3F6wCrnGguKqjqTABnopG6LDEf1jmEaBVBGyUe, fox_owner: 5kn6ED5hKzF8f8Go3xahR515ekJkM1EcWN8V31PvZcBB
+Mission result for signature 3h1DUkbC7W8u6FXggrtx8oBr4U9stYun2EBG7dsfnBVrsoGyxQtgBoZpsA4GH1JhAWgPNw3a5ytmcHHmWBESF3Hz already exists. Skipping insertion.
+blocktime: 1722029506
+Found thawAccount with mint address: BZeKG3xvKNn1ygxT2x6MLsqk5ctLDdsSvwXvGZYUNQ6
+Validated fox address: BZeKG3xvKNn1ygxT2x6MLsqk5ctLDdsSvwXvGZYUNQ6
+Final extracted addresses - Fox: BZeKG3xvKNn1ygxT2x6MLsqk5ctLDdsSvwXvGZYUNQ6, Den: null
+Calculating powers for fox_address: BZeKG3xvKNn1ygxT2x6MLsqk5ctLDdsSvwXvGZYUNQ6, den_address: null
+Inserting mission result for signature: UhkxC8jhiQcs3tQxijkoccKTYtTYrqPyjeUWCZyvBGTz4Q3hWR3j4mfbuz4DN4fGXS4EH8oxNSsU27Vxu7FmKeT, fox_address: BZeKG3xvKNn1ygxT2x6MLsqk5ctLDdsSvwXvGZYUNQ6, fox_owner: 9AyTVSEsmBjTQz3PRarQCvGqqcjK1CvBTq8CwEkXZRwm
+Mission result for signature UhkxC8jhiQcs3tQxijkoccKTYtTYrqPyjeUWCZyvBGTz4Q3hWR3j4mfbuz4DN4fGXS4EH8oxNSsU27Vxu7FmKeT already exists. Skipping insertion.
+blocktime: 1722029506
+Found thawAccount with mint address: 4VxecpKfgh4huPwvXBLyoW6KwKHh79AMLnjgYD5ozyXg
+Validated fox address: 4VxecpKfgh4huPwvXBLyoW6KwKHh79AMLnjgYD5ozyXg
+Final extracted addresses - Fox: 4VxecpKfgh4huPwvXBLyoW6KwKHh79AMLnjgYD5ozyXg, Den: null
+Calculating powers for fox_address: 4VxecpKfgh4huPwvXBLyoW6KwKHh79AMLnjgYD5ozyXg, den_address: null
+Inserting mission result for signature: 2VoSYNkPv3GKxUpMVPhsPXJfLGQH765pL5yWbEMeq9nurnpJCCK3vDVMBXdc2yjA52ijiQovqwQyE5NcEytb93TT, fox_address: 4VxecpKfgh4huPwvXBLyoW6KwKHh79AMLnjgYD5ozyXg, fox_owner: 9AyTVSEsmBjTQz3PRarQCvGqqcjK1CvBTq8CwEkXZRwm
+Mission result for signature 2VoSYNkPv3GKxUpMVPhsPXJfLGQH765pL5yWbEMeq9nurnpJCCK3vDVMBXdc2yjA52ijiQovqwQyE5NcEytb93TT already exists. Skipping insertion.
+blocktime: 1722029504
+Found thawAccount with mint address: 31uyLFWBK4z2zuEuBfvzuzpXNHGqxVguHPd459Gjegr4
+Validated fox address: 31uyLFWBK4z2zuEuBfvzuzpXNHGqxVguHPd459Gjegr4
+Found thawAccount with mint address: CeFKTEGapuFNdLsDwkhoEmKohyWE7zJymhuxGebVg72X
+Address CeFKTEGapuFNdLsDwkhoEmKohyWE7zJymhuxGebVg72X is not a fox: JSON object requested, multiple (or no) rows returned
+Validated den address: CeFKTEGapuFNdLsDwkhoEmKohyWE7zJymhuxGebVg72X
+Final extracted addresses - Fox: 31uyLFWBK4z2zuEuBfvzuzpXNHGqxVguHPd459Gjegr4, Den: CeFKTEGapuFNdLsDwkhoEmKohyWE7zJymhuxGebVg72X
+Calculating powers for fox_address: 31uyLFWBK4z2zuEuBfvzuzpXNHGqxVguHPd459Gjegr4, den_address: CeFKTEGapuFNdLsDwkhoEmKohyWE7zJymhuxGebVg72X
+Inserting mission result for signature: 5XkXMPtqMGWmXfUCQrFoFj5Rm56WCs5rvE6me6XPfVJdBFF7p7gnMCnpXTPniuaReDatmZfQMjf7x8eXo5kd1iEv, fox_address: 31uyLFWBK4z2zuEuBfvzuzpXNHGqxVguHPd459Gjegr4, fox_owner: 9AyTVSEsmBjTQz3PRarQCvGqqcjK1CvBTq8CwEkXZRwm
+Mission result for signature 5XkXMPtqMGWmXfUCQrFoFj5Rm56WCs5rvE6me6XPfVJdBFF7p7gnMCnpXTPniuaReDatmZfQMjf7x8eXo5kd1iEv already exists. Skipping insertion.
+blocktime: 1721829580
+Found thawAccount with mint address: 6mYrmHeHtK1cfn6ZkiWaXaeLVaTrxTFAujnKpNjUZSx9
+Validated fox address: 6mYrmHeHtK1cfn6ZkiWaXaeLVaTrxTFAujnKpNjUZSx9
+Final extracted addresses - Fox: 6mYrmHeHtK1cfn6ZkiWaXaeLVaTrxTFAujnKpNjUZSx9, Den: null
+Calculating powers for fox_address: 6mYrmHeHtK1cfn6ZkiWaXaeLVaTrxTFAujnKpNjUZSx9, den_address: null
+Inserting mission result for signature: 287oyVBfQKFhWoWdaTCrsomULoPuDmYfFjGsGpCmFSJhMqSL8ah8p45MPQ18w6ywHYWpmUzBBVyxsZfCNNFq6xqV, fox_address: 6mYrmHeHtK1cfn6ZkiWaXaeLVaTrxTFAujnKpNjUZSx9, fox_owner: 5E56QtXgY8MrhizW4A2onmmRzabJ8FwyMLrJdB36NSrx
+Mission result for signature 287oyVBfQKFhWoWdaTCrsomULoPuDmYfFjGsGpCmFSJhMqSL8ah8p45MPQ18w6ywHYWpmUzBBVyxsZfCNNFq6xqV already exists. Skipping insertion.
+blocktime: 1721829579
+Found thawAccount with mint address: 2jZq2eQeLQRZiFext6Wi42FfDchnvShzcBsgiDFdb68W
+Validated fox address: 2jZq2eQeLQRZiFext6Wi42FfDchnvShzcBsgiDFdb68W
+Final extracted addresses - Fox: 2jZq2eQeLQRZiFext6Wi42FfDchnvShzcBsgiDFdb68W, Den: null
+Calculating powers for fox_address: 2jZq2eQeLQRZiFext6Wi42FfDchnvShzcBsgiDFdb68W, den_address: null
+Inserting mission result for signature: 4C33qP35nfwcx45mxFZV4vh7AEqquTwUPaBzNU8nJEYru884GquGFqi8ZL7ZpaHVdBbS8jcCKAJzvX6og7PzoQL4, fox_address: 2jZq2eQeLQRZiFext6Wi42FfDchnvShzcBsgiDFdb68W, fox_owner: 5E56QtXgY8MrhizW4A2onmmRzabJ8FwyMLrJdB36NSrx
+Mission result for signature 4C33qP35nfwcx45mxFZV4vh7AEqquTwUPaBzNU8nJEYru884GquGFqi8ZL7ZpaHVdBbS8jcCKAJzvX6og7PzoQL4 already exists. Skipping insertion.
+blocktime: 1721225475
+Found thawAccount with mint address: 4QquAXsy3hvHWFDsZxK6uiqXXEy7UCtPFQY5r3NDddtU
+Validated fox address: 4QquAXsy3hvHWFDsZxK6uiqXXEy7UCtPFQY5r3NDddtU
+Final extracted addresses - Fox: 4QquAXsy3hvHWFDsZxK6uiqXXEy7UCtPFQY5r3NDddtU, Den: null
+Calculating powers for fox_address: 4QquAXsy3hvHWFDsZxK6uiqXXEy7UCtPFQY5r3NDddtU, den_address: null
+Inserting mission result for signature: 3mkTJJMjuQTFPhxYXGSa84hgoRQB38xBexE4p7emD438exK8G2uRKiCGRfVtwUCw7sVtxfNnutLYJCgSb6ymn1ut, fox_address: 4QquAXsy3hvHWFDsZxK6uiqXXEy7UCtPFQY5r3NDddtU, fox_owner: 433i6VTxiJbDGFgjdCfMP6jgNCNomRcyfXe2rtEB5iK2
+Mission result for signature 3mkTJJMjuQTFPhxYXGSa84hgoRQB38xBexE4p7emD438exK8G2uRKiCGRfVtwUCw7sVtxfNnutLYJCgSb6ymn1ut already exists. Skipping insertion.
+blocktime: 1721138515
+Found thawAccount with mint address: BdYrCsKghGKnd2UXt5TjGYXdGP6diSYMz3dAKThMPDDX
+Validated fox address: BdYrCsKghGKnd2UXt5TjGYXdGP6diSYMz3dAKThMPDDX
+Final extracted addresses - Fox: BdYrCsKghGKnd2UXt5TjGYXdGP6diSYMz3dAKThMPDDX, Den: null
+Calculating powers for fox_address: BdYrCsKghGKnd2UXt5TjGYXdGP6diSYMz3dAKThMPDDX, den_address: null
+Inserting mission result for signature: 4fRvDZ1Kj6NoysCUE7A33CUXS2ogJFSKDFtunNbogJFiymPoTfEnf2rXHNqumScsDW1LdFXYmJauHEVJtaC3KJqu, fox_address: BdYrCsKghGKnd2UXt5TjGYXdGP6diSYMz3dAKThMPDDX, fox_owner: HfAydvgGZMXUjSBme5WDJM7trsWGk9NdaXiQ3Zn6nDqW
+Mission result for signature 4fRvDZ1Kj6NoysCUE7A33CUXS2ogJFSKDFtunNbogJFiymPoTfEnf2rXHNqumScsDW1LdFXYmJauHEVJtaC3KJqu already exists. Skipping insertion.
+blocktime: 1721061128
+Found thawAccount with mint address: Bxm1GuzZThVA75dF5MXjb1Ah74WZFQ5YWRsvFCRLRbNT
+Validated fox address: Bxm1GuzZThVA75dF5MXjb1Ah74WZFQ5YWRsvFCRLRbNT
+Final extracted addresses - Fox: Bxm1GuzZThVA75dF5MXjb1Ah74WZFQ5YWRsvFCRLRbNT, Den: null
+Calculating powers for fox_address: Bxm1GuzZThVA75dF5MXjb1Ah74WZFQ5YWRsvFCRLRbNT, den_address: null
+Inserting mission result for signature: 3DFUqZSLUbDFh96HT5i5DBH5E2tKL6LSfQiApiwj8bhg3HVVcwARVqnx6LTi1dMxUqHwoGg6FbibnDreGN6AdPXD, fox_address: Bxm1GuzZThVA75dF5MXjb1Ah74WZFQ5YWRsvFCRLRbNT, fox_owner: Cs7hpLYxEaMde1DnyeJUAY4xcJAm2zTaGj6J88VhuTpH
+Mission result for signature 3DFUqZSLUbDFh96HT5i5DBH5E2tKL6LSfQiApiwj8bhg3HVVcwARVqnx6LTi1dMxUqHwoGg6FbibnDreGN6AdPXD already exists. Skipping insertion.
+blocktime: 1721016172
+Found thawAccount with mint address: 6t8VneTs3MDFiNcw1tB6LCa35GViUEn9UzCXHDW4rwJP
+Validated fox address: 6t8VneTs3MDFiNcw1tB6LCa35GViUEn9UzCXHDW4rwJP
+Final extracted addresses - Fox: 6t8VneTs3MDFiNcw1tB6LCa35GViUEn9UzCXHDW4rwJP, Den: null
+Calculating powers for fox_address: 6t8VneTs3MDFiNcw1tB6LCa35GViUEn9UzCXHDW4rwJP, den_address: null
+Inserting mission result for signature: 225LcEVh44co52r1Py2xoXLqVkdJ7TcQcrBXPNhVevfYzNSxdoMYnAmf1KpMTjGZq3etv3uArkVtDCUZh6gSmo7V, fox_address: 6t8VneTs3MDFiNcw1tB6LCa35GViUEn9UzCXHDW4rwJP, fox_owner: HGDt2fsgoetdNKdaKBtoSfdPDHon4bfbfRqMgKxW8jeK
+Mission result for signature 225LcEVh44co52r1Py2xoXLqVkdJ7TcQcrBXPNhVevfYzNSxdoMYnAmf1KpMTjGZq3etv3uArkVtDCUZh6gSmo7V already exists. Skipping insertion.
+blocktime: 1721007040
+Found thawAccount with mint address: E84RXVAiB3uwgsDKUrj8ackLmoCGQyuW2fNqivykr1Ua
+Validated fox address: E84RXVAiB3uwgsDKUrj8ackLmoCGQyuW2fNqivykr1Ua
+Found thawAccount with mint address: 5rDvqZd8P9PDZwec7qrCeUM7vgu4A48Ah1xt9TtCcXRF
+Address 5rDvqZd8P9PDZwec7qrCeUM7vgu4A48Ah1xt9TtCcXRF is not a fox: JSON object requested, multiple (or no) rows returned
+Validated den address: 5rDvqZd8P9PDZwec7qrCeUM7vgu4A48Ah1xt9TtCcXRF
+Final extracted addresses - Fox: E84RXVAiB3uwgsDKUrj8ackLmoCGQyuW2fNqivykr1Ua, Den: 5rDvqZd8P9PDZwec7qrCeUM7vgu4A48Ah1xt9TtCcXRF
+Calculating powers for fox_address: E84RXVAiB3uwgsDKUrj8ackLmoCGQyuW2fNqivykr1Ua, den_address: 5rDvqZd8P9PDZwec7qrCeUM7vgu4A48Ah1xt9TtCcXRF
+Inserting mission result for signature: 2dSmZJFFUrRkmm3WJm1UMtZxoyAof6yWSEwX9mLgs6rcCZ1drYE1wB3QsNUvvJfzUV44ys72sdiWLCfoVdXP5Wd8, fox_address: E84RXVAiB3uwgsDKUrj8ackLmoCGQyuW2fNqivykr1Ua, fox_owner: 7Z8Sf7JkKYCVhM3atrL7i1WgAQo5bngNSmXM1nZbJ1J
+Mission result for signature 2dSmZJFFUrRkmm3WJm1UMtZxoyAof6yWSEwX9mLgs6rcCZ1drYE1wB3QsNUvvJfzUV44ys72sdiWLCfoVdXP5Wd8 already exists. Skipping insertion.
+blocktime: 1721007040
+Found thawAccount with mint address: BvFKm3Eu3bZcuLD1CN3CKAZ6crMTVUJ8D6oBAicZHj8k
+Validated fox address: BvFKm3Eu3bZcuLD1CN3CKAZ6crMTVUJ8D6oBAicZHj8k
+Final extracted addresses - Fox: BvFKm3Eu3bZcuLD1CN3CKAZ6crMTVUJ8D6oBAicZHj8k, Den: null
+Calculating powers for fox_address: BvFKm3Eu3bZcuLD1CN3CKAZ6crMTVUJ8D6oBAicZHj8k, den_address: null
+Inserting mission result for signature: 3R63riUP6RRcdzbiAQZduCQFGyJrSpASN3APDkUEC3pqtRwowEau1HcK6naT5ARUs8Fi1q5eF6fhwKNWqMTdnCqN, fox_address: BvFKm3Eu3bZcuLD1CN3CKAZ6crMTVUJ8D6oBAicZHj8k, fox_owner: 7Z8Sf7JkKYCVhM3atrL7i1WgAQo5bngNSmXM1nZbJ1J
+Mission result for signature 3R63riUP6RRcdzbiAQZduCQFGyJrSpASN3APDkUEC3pqtRwowEau1HcK6naT5ARUs8Fi1q5eF6fhwKNWqMTdnCqN already exists. Skipping insertion.
+blocktime: 1721007040
+Found thawAccount with mint address: EUrrajFKvum9TodZYRG2wNP2Us2V6Z9Rekb24hf6wPmc
+Address EUrrajFKvum9TodZYRG2wNP2Us2V6Z9Rekb24hf6wPmc is not a fox: JSON object requested, multiple (or no) rows returned
+Validated den address: EUrrajFKvum9TodZYRG2wNP2Us2V6Z9Rekb24hf6wPmc
+Found thawAccount with mint address: DDRmuwBzyUA7PsKtyxkPq6e65iXK2zZL43g1XBePrErx
+Validated fox address: DDRmuwBzyUA7PsKtyxkPq6e65iXK2zZL43g1XBePrErx
+Final extracted addresses - Fox: DDRmuwBzyUA7PsKtyxkPq6e65iXK2zZL43g1XBePrErx, Den: EUrrajFKvum9TodZYRG2wNP2Us2V6Z9Rekb24hf6wPmc
+Calculating powers for fox_address: DDRmuwBzyUA7PsKtyxkPq6e65iXK2zZL43g1XBePrErx, den_address: EUrrajFKvum9TodZYRG2wNP2Us2V6Z9Rekb24hf6wPmc
+Inserting mission result for signature: MmPDd72SjDkCuuDTiUDAFbARsfsUAR35mJmRFu9NyikisN3iGPfFKFSM97zR6B3FDd8gUwUnv8Ldhzw12gziq8Z, fox_address: DDRmuwBzyUA7PsKtyxkPq6e65iXK2zZL43g1XBePrErx, fox_owner: 7Z8Sf7JkKYCVhM3atrL7i1WgAQo5bngNSmXM1nZbJ1J
+Mission result for signature MmPDd72SjDkCuuDTiUDAFbARsfsUAR35mJmRFu9NyikisN3iGPfFKFSM97zR6B3FDd8gUwUnv8Ldhzw12gziq8Z already exists. Skipping insertion.
+blocktime: 1721006590
+Found thawAccount with mint address: 5oqX2LR915rztsVgrThRFMyd54K4GBVsmkoEJAnjoRd8
+Validated fox address: 5oqX2LR915rztsVgrThRFMyd54K4GBVsmkoEJAnjoRd8
+Found thawAccount with mint address: CitQq2nRHykM9zvZmHx9St7gKDxhbSnpwe2Z4pJ98AN7
+Address CitQq2nRHykM9zvZmHx9St7gKDxhbSnpwe2Z4pJ98AN7 is not a fox: JSON object requested, multiple (or no) rows returned
+Validated den address: CitQq2nRHykM9zvZmHx9St7gKDxhbSnpwe2Z4pJ98AN7
+Final extracted addresses - Fox: 5oqX2LR915rztsVgrThRFMyd54K4GBVsmkoEJAnjoRd8, Den: CitQq2nRHykM9zvZmHx9St7gKDxhbSnpwe2Z4pJ98AN7
+Calculating powers for fox_address: 5oqX2LR915rztsVgrThRFMyd54K4GBVsmkoEJAnjoRd8, den_address: CitQq2nRHykM9zvZmHx9St7gKDxhbSnpwe2Z4pJ98AN7
+Inserting mission result for signature: 3ECYqq8fLQVXnTijV2UKFxzF3gbo2q73hvfPPzUG1E4Cv7unk3FNAAAM25WaPwzPg8eWE7th4eJ5sgYxJDss1wRa, fox_address: 5oqX2LR915rztsVgrThRFMyd54K4GBVsmkoEJAnjoRd8, fox_owner: 2TBr9iNVk989FRF35NJVsdGf57iQvQ631FHuVrQ2X19Q
+Mission result for signature 3ECYqq8fLQVXnTijV2UKFxzF3gbo2q73hvfPPzUG1E4Cv7unk3FNAAAM25WaPwzPg8eWE7th4eJ5sgYxJDss1wRa already exists. Skipping insertion.
+blocktime: 1721006587
+Found thawAccount with mint address: H2NMFKLuq3reFN9VttVzQu3PKrK9iR6jjT3jCZCSHrHb
+Validated fox address: H2NMFKLuq3reFN9VttVzQu3PKrK9iR6jjT3jCZCSHrHb
+Final extracted addresses - Fox: H2NMFKLuq3reFN9VttVzQu3PKrK9iR6jjT3jCZCSHrHb, Den: null
+Calculating powers for fox_address: H2NMFKLuq3reFN9VttVzQu3PKrK9iR6jjT3jCZCSHrHb, den_address: null
+Inserting mission result for signature: 61cfYPK664E1469iiDG1RCPcaBkPGyjG4darCJze9UaAMH7MnxSpVMnVWCR2j9zDCQKh5qM6ZvTp5Gra9LuX4CDq, fox_address: H2NMFKLuq3reFN9VttVzQu3PKrK9iR6jjT3jCZCSHrHb, fox_owner: 2TBr9iNVk989FRF35NJVsdGf57iQvQ631FHuVrQ2X19Q
+Mission result for signature 61cfYPK664E1469iiDG1RCPcaBkPGyjG4darCJze9UaAMH7MnxSpVMnVWCR2j9zDCQKh5qM6ZvTp5Gra9LuX4CDq already exists. Skipping insertion.
+blocktime: 1720992212
+Found thawAccount with mint address: 7ywnWDofJ9K2HxbgDekT5nDC7t1TSqwKJjGT5vrJ35L1
+Validated fox address: 7ywnWDofJ9K2HxbgDekT5nDC7t1TSqwKJjGT5vrJ35L1
+Final extracted addresses - Fox: 7ywnWDofJ9K2HxbgDekT5nDC7t1TSqwKJjGT5vrJ35L1, Den: null
+Calculating powers for fox_address: 7ywnWDofJ9K2HxbgDekT5nDC7t1TSqwKJjGT5vrJ35L1, den_address: null
+Inserting mission result for signature: 3jyvEoyBtnnZwiFPHPkfue3Wko9LFvjVsFxk5XXW2JwkEa4uDnv9bRtxHbwYT2MU7A262jTNWreZXhhsoEbfNjqN, fox_address: 7ywnWDofJ9K2HxbgDekT5nDC7t1TSqwKJjGT5vrJ35L1, fox_owner: 4sC3se8wbvPjgj9MuoWZmVFzR4dyLBrYDXWdx3afeZoP
+Mission result for signature 3jyvEoyBtnnZwiFPHPkfue3Wko9LFvjVsFxk5XXW2JwkEa4uDnv9bRtxHbwYT2MU7A262jTNWreZXhhsoEbfNjqN already exists. Skipping insertion.
+blocktime: 1720992212
+Found thawAccount with mint address: 8fFE4km5kiw8NfrivgfsQ5iGTdBhiN5hpWwwbiZwk1Wu
+Validated fox address: 8fFE4km5kiw8NfrivgfsQ5iGTdBhiN5hpWwwbiZwk1Wu
+Found thawAccount with mint address: 9ABpkrW39Akus27YmcKitQHPmQN3ZoRbRFdgxukctK2S
+Address 9ABpkrW39Akus27YmcKitQHPmQN3ZoRbRFdgxukctK2S is not a fox: JSON object requested, multiple (or no) rows returned
+Validated den address: 9ABpkrW39Akus27YmcKitQHPmQN3ZoRbRFdgxukctK2S
+Final extracted addresses - Fox: 8fFE4km5kiw8NfrivgfsQ5iGTdBhiN5hpWwwbiZwk1Wu, Den: 9ABpkrW39Akus27YmcKitQHPmQN3ZoRbRFdgxukctK2S
+Calculating powers for fox_address: 8fFE4km5kiw8NfrivgfsQ5iGTdBhiN5hpWwwbiZwk1Wu, den_address: 9ABpkrW39Akus27YmcKitQHPmQN3ZoRbRFdgxukctK2S
+Inserting mission result for signature: 5rxdA6PC7wTCzgvza1zf2phC5VJD6M96uQE9bxatqwTDp4CFW4j14JqZDHMPyHNSbeHM9G656BpxRvHapojR9g7x, fox_address: 8fFE4km5kiw8NfrivgfsQ5iGTdBhiN5hpWwwbiZwk1Wu, fox_owner: 4sC3se8wbvPjgj9MuoWZmVFzR4dyLBrYDXWdx3afeZoP
+Mission result for signature 5rxdA6PC7wTCzgvza1zf2phC5VJD6M96uQE9bxatqwTDp4CFW4j14JqZDHMPyHNSbeHM9G656BpxRvHapojR9g7x already exists. Skipping insertion.
+blocktime: 1720992212
+Found thawAccount with mint address: GXv4xU9t689KjgYSQ7WxjRnPfyKCDxHeWYq8Z9EfeXRL
+Address GXv4xU9t689KjgYSQ7WxjRnPfyKCDxHeWYq8Z9EfeXRL is not a fox: JSON object requested, multiple (or no) rows returned
+Validated den address: GXv4xU9t689KjgYSQ7WxjRnPfyKCDxHeWYq8Z9EfeXRL
+Found thawAccount with mint address: 35rY6LsQ6v4xxvz5LCc7cF54VHhmfQ2CSoF22shdcLtp
+Validated fox address: 35rY6LsQ6v4xxvz5LCc7cF54VHhmfQ2CSoF22shdcLtp
+Final extracted addresses - Fox: 35rY6LsQ6v4xxvz5LCc7cF54VHhmfQ2CSoF22shdcLtp, Den: GXv4xU9t689KjgYSQ7WxjRnPfyKCDxHeWYq8Z9EfeXRL
+Calculating powers for fox_address: 35rY6LsQ6v4xxvz5LCc7cF54VHhmfQ2CSoF22shdcLtp, den_address: GXv4xU9t689KjgYSQ7WxjRnPfyKCDxHeWYq8Z9EfeXRL
+Inserting mission result for signature: 4TMEfJkQuYsdsvP7jjdWTe8PBnNjRUKm5NBidVVjquer6C8vovPggTUMhXni3fBftKmbxuFMtoxS6noc1E165Fbg, fox_address: 35rY6LsQ6v4xxvz5LCc7cF54VHhmfQ2CSoF22shdcLtp, fox_owner: 4sC3se8wbvPjgj9MuoWZmVFzR4dyLBrYDXWdx3afeZoP
+Mission result for signature 4TMEfJkQuYsdsvP7jjdWTe8PBnNjRUKm5NBidVVjquer6C8vovPggTUMhXni3fBftKmbxuFMtoxS6noc1E165Fbg already exists. Skipping insertion.
+blocktime: 1720992212
+Found thawAccount with mint address: 4meRcAzWpkhjUe2Vr1212wshHC19Tw23KdVoR1L6YhuK
+Validated fox address: 4meRcAzWpkhjUe2Vr1212wshHC19Tw23KdVoR1L6YhuK
+Final extracted addresses - Fox: 4meRcAzWpkhjUe2Vr1212wshHC19Tw23KdVoR1L6YhuK, Den: null
+Calculating powers for fox_address: 4meRcAzWpkhjUe2Vr1212wshHC19Tw23KdVoR1L6YhuK, den_address: null
+Inserting mission result for signature: ix3EH1HqksG2d1gqHdCD2hsRLW93iQSoV2a4tqHXEjbDzjFbPjNszaxZFyUis2KrXyaNbbcNniW1UoFsSEujowV, fox_address: 4meRcAzWpkhjUe2Vr1212wshHC19Tw23KdVoR1L6YhuK, fox_owner: 4sC3se8wbvPjgj9MuoWZmVFzR4dyLBrYDXWdx3afeZoP
+Mission result for signature ix3EH1HqksG2d1gqHdCD2hsRLW93iQSoV2a4tqHXEjbDzjFbPjNszaxZFyUis2KrXyaNbbcNniW1UoFsSEujowV already exists. Skipping insertion.
+blocktime: 1720992212
+Found thawAccount with mint address: 8Kkh3YgQLC4HzvgLHd3Lk2f32NjPteEnqus1EiAgWGhW
+Validated fox address: 8Kkh3YgQLC4HzvgLHd3Lk2f32NjPteEnqus1EiAgWGhW
+Final extracted addresses - Fox: 8Kkh3YgQLC4HzvgLHd3Lk2f32NjPteEnqus1EiAgWGhW, Den: null
+Calculating powers for fox_address: 8Kkh3YgQLC4HzvgLHd3Lk2f32NjPteEnqus1EiAgWGhW, den_address: null
+Inserting mission result for signature: xGgnoybCkL2AYQJ75DJHs82UK79AvYAT6L9LPAsTH1VboQiiwPSY1qN2aJPi5cGiNWu8zjQf4Nj5BqDKabHMb3h, fox_address: 8Kkh3YgQLC4HzvgLHd3Lk2f32NjPteEnqus1EiAgWGhW, fox_owner: 4sC3se8wbvPjgj9MuoWZmVFzR4dyLBrYDXWdx3afeZoP
+Mission result for signature xGgnoybCkL2AYQJ75DJHs82UK79AvYAT6L9LPAsTH1VboQiiwPSY1qN2aJPi5cGiNWu8zjQf4Nj5BqDKabHMb3h already exists. Skipping insertion.
+blocktime: 1720992212
+Found thawAccount with mint address: 6CHtYnXFv1VsRujzHjq6gJ2s7Z6pNzUXmNbpssLT7Eg5
+Validated fox address: 6CHtYnXFv1VsRujzHjq6gJ2s7Z6pNzUXmNbpssLT7Eg5
+Final extracted addresses - Fox: 6CHtYnXFv1VsRujzHjq6gJ2s7Z6pNzUXmNbpssLT7Eg5, Den: null
+Calculating powers for fox_address: 6CHtYnXFv1VsRujzHjq6gJ2s7Z6pNzUXmNbpssLT7Eg5, den_address: null
+Inserting mission result for signature: QYNHYDyZZnS7CvWyA2t8NamSuT3bdSXPz37Si5vDs52Egk7DQ3EmR4UPb9tURbCZN93RSDAtFQUCsYJc3zD1oYn, fox_address: 6CHtYnXFv1VsRujzHjq6gJ2s7Z6pNzUXmNbpssLT7Eg5, fox_owner: 4sC3se8wbvPjgj9MuoWZmVFzR4dyLBrYDXWdx3afeZoP
+Mission result for signature QYNHYDyZZnS7CvWyA2t8NamSuT3bdSXPz37Si5vDs52Egk7DQ3EmR4UPb9tURbCZN93RSDAtFQUCsYJc3zD1oYn already exists. Skipping insertion.
+blocktime: 1720992211
+Found thawAccount with mint address: D8bRZh3eVcUGzxfjmV6axDsabMhXNi881h1h1XLJeHBX
+Validated fox address: D8bRZh3eVcUGzxfjmV6axDsabMhXNi881h1h1XLJeHBX
+Final extracted addresses - Fox: D8bRZh3eVcUGzxfjmV6axDsabMhXNi881h1h1XLJeHBX, Den: null
+Calculating powers for fox_address: D8bRZh3eVcUGzxfjmV6axDsabMhXNi881h1h1XLJeHBX, den_address: null
+Inserting mission result for signature: 5oqwhAw48gP6GXvr93p74TnST1y4uKM8dKcsjEzLi6MyYudCPDLQjvebxHtCTGKsRZFcaMCgC6pxXrbSkyYBoTHQ, fox_address: D8bRZh3eVcUGzxfjmV6axDsabMhXNi881h1h1XLJeHBX, fox_owner: 4sC3se8wbvPjgj9MuoWZmVFzR4dyLBrYDXWdx3afeZoP
+Mission result for signature 5oqwhAw48gP6GXvr93p74TnST1y4uKM8dKcsjEzLi6MyYudCPDLQjvebxHtCTGKsRZFcaMCgC6pxXrbSkyYBoTHQ already exists. Skipping insertion.
+blocktime: 1720990795
+Found thawAccount with mint address: BifPqnCV8rTBT2t6185BYK85SeWYBmQ6NYDogcmoHiMp
+Validated fox address: BifPqnCV8rTBT2t6185BYK85SeWYBmQ6NYDogcmoHiMp
+Found thawAccount with mint address: 6bSuXLrhSthBEj2hdGLTBtinS22VbdjQJ8yiujLpd4at
+Address 6bSuXLrhSthBEj2hdGLTBtinS22VbdjQJ8yiujLpd4at is not a fox: JSON object requested, multiple (or no) rows returned
+Validated den address: 6bSuXLrhSthBEj2hdGLTBtinS22VbdjQJ8yiujLpd4at
+Final extracted addresses - Fox: BifPqnCV8rTBT2t6185BYK85SeWYBmQ6NYDogcmoHiMp, Den: 6bSuXLrhSthBEj2hdGLTBtinS22VbdjQJ8yiujLpd4at
+Calculating powers for fox_address: BifPqnCV8rTBT2t6185BYK85SeWYBmQ6NYDogcmoHiMp, den_address: 6bSuXLrhSthBEj2hdGLTBtinS22VbdjQJ8yiujLpd4at
+Inserting mission result for signature: 4As7wMFd1KdhyvHkoeCwgVW2ADc9nhUBafxH8nmJmLjRvp4gBMzp3SRwH87WL1DUS9jU8LAkG6X1M78Bq3WJ5UDp, fox_address: BifPqnCV8rTBT2t6185BYK85SeWYBmQ6NYDogcmoHiMp, fox_owner: 6wWE43zw4nAx8iwY3nu2TjYxH2CnTzuZKVtSb2qobZDX
+Mission result for signature 4As7wMFd1KdhyvHkoeCwgVW2ADc9nhUBafxH8nmJmLjRvp4gBMzp3SRwH87WL1DUS9jU8LAkG6X1M78Bq3WJ5UDp already exists. Skipping insertion.
+blocktime: 1720990793
+Found thawAccount with mint address: EDESeUZrZqTNFKV17igTccXJFfgw4dxrKTczhCQ72kUb
+Validated fox address: EDESeUZrZqTNFKV17igTccXJFfgw4dxrKTczhCQ72kUb
+Final extracted addresses - Fox: EDESeUZrZqTNFKV17igTccXJFfgw4dxrKTczhCQ72kUb, Den: null
+Calculating powers for fox_address: EDESeUZrZqTNFKV17igTccXJFfgw4dxrKTczhCQ72kUb, den_address: null
+Inserting mission result for signature: gisLieKsAvMtT5pPFEUuKeLRe9Tz3MdbctK4qTfPg483Ca8Eao4x8qAfVgeCkusjN5ry2Yiv4V5XwoaR4fhZwwn, fox_address: EDESeUZrZqTNFKV17igTccXJFfgw4dxrKTczhCQ72kUb, fox_owner: 6wWE43zw4nAx8iwY3nu2TjYxH2CnTzuZKVtSb2qobZDX
+Mission result for signature gisLieKsAvMtT5pPFEUuKeLRe9Tz3MdbctK4qTfPg483Ca8Eao4x8qAfVgeCkusjN5ry2Yiv4V5XwoaR4fhZwwn already exists. Skipping insertion.
+blocktime: 1720990793
+Found thawAccount with mint address: 3NBuLtUW31vDd1huci6RWPEgHqebxsmNM8aeWDR79Qxh
+Validated fox address: 3NBuLtUW31vDd1huci6RWPEgHqebxsmNM8aeWDR79Qxh
+Final extracted addresses - Fox: 3NBuLtUW31vDd1huci6RWPEgHqebxsmNM8aeWDR79Qxh, Den: null
+Calculating powers for fox_address: 3NBuLtUW31vDd1huci6RWPEgHqebxsmNM8aeWDR79Qxh, den_address: null
+Inserting mission result for signature: 41yV2L85niwiRgo2WwsvDrqY5DjCWwFkyztfvbaDqraXhHkwbie5ruTPAeyCxcoEiLbgWmA4LzQMMK8pVwdWyxpN, fox_address: 3NBuLtUW31vDd1huci6RWPEgHqebxsmNM8aeWDR79Qxh, fox_owner: 6wWE43zw4nAx8iwY3nu2TjYxH2CnTzuZKVtSb2qobZDX
+Mission result for signature 41yV2L85niwiRgo2WwsvDrqY5DjCWwFkyztfvbaDqraXhHkwbie5ruTPAeyCxcoEiLbgWmA4LzQMMK8pVwdWyxpN already exists. Skipping insertion.
+blocktime: 1720988647
+Found thawAccount with mint address: 9eesyh1DGagwbUNVuDumDcghDyU3NScUCvggP3vUwrr5
+Validated fox address: 9eesyh1DGagwbUNVuDumDcghDyU3NScUCvggP3vUwrr5
+Final extracted addresses - Fox: 9eesyh1DGagwbUNVuDumDcghDyU3NScUCvggP3vUwrr5, Den: null
+Calculating powers for fox_address: 9eesyh1DGagwbUNVuDumDcghDyU3NScUCvggP3vUwrr5, den_address: null
+Inserting mission result for signature: 3Lx9YQ2EAC4dSjGpx9Jz5mMeMQNsNJPhSkmLzCMvrBs73GaD9j4aijhkmxiYdjhLk9nV3RnxtQwcxise2iaVpqkG, fox_address: 9eesyh1DGagwbUNVuDumDcghDyU3NScUCvggP3vUwrr5, fox_owner: 9tAP2fx8HbcKd1wyxeiV99dCBVHRLWnsJzs4dV4pEcer
+Mission result for signature 3Lx9YQ2EAC4dSjGpx9Jz5mMeMQNsNJPhSkmLzCMvrBs73GaD9j4aijhkmxiYdjhLk9nV3RnxtQwcxise2iaVpqkG already exists. Skipping insertion.
+blocktime: 1720971792
+Found thawAccount with mint address: HkBm4MzYLhQjo4GH5tQbVK2sExUDCDaPPTXGvhfKazUx
+Validated fox address: HkBm4MzYLhQjo4GH5tQbVK2sExUDCDaPPTXGvhfKazUx
+Final extracted addresses - Fox: HkBm4MzYLhQjo4GH5tQbVK2sExUDCDaPPTXGvhfKazUx, Den: null
+Calculating powers for fox_address: HkBm4MzYLhQjo4GH5tQbVK2sExUDCDaPPTXGvhfKazUx, den_address: null
+Inserting mission result for signature: 59rjnYSrrtLCuumaHVnV2B5G9pNJfcv19rq1Vdjsj48Qiv7LWCgGysgcxiysYYSPAqLA3abU3VfhbcrcbGN7SFXV, fox_address: HkBm4MzYLhQjo4GH5tQbVK2sExUDCDaPPTXGvhfKazUx, fox_owner: Cy5DhqzkYsxk8kuq43SGhtQs2RpeJoN7mYZEEGs3a3Gj
+Mission result for signature 59rjnYSrrtLCuumaHVnV2B5G9pNJfcv19rq1Vdjsj48Qiv7LWCgGysgcxiysYYSPAqLA3abU3VfhbcrcbGN7SFXV already exists. Skipping insertion.
+blocktime: 1720971792
+Found thawAccount with mint address: 3A8ihHWzfiN3JjqDkUVcFaEp8gwzkc57M45RAgTbjVCM
+Validated fox address: 3A8ihHWzfiN3JjqDkUVcFaEp8gwzkc57M45RAgTbjVCM
+Final extracted addresses - Fox: 3A8ihHWzfiN3JjqDkUVcFaEp8gwzkc57M45RAgTbjVCM, Den: null
+Calculating powers for fox_address: 3A8ihHWzfiN3JjqDkUVcFaEp8gwzkc57M45RAgTbjVCM, den_address: null
+Inserting mission result for signature: 3Fb9BWdYokErJaD19XdfU9nathKRESjJAJVZQNKFkvBUJBpmMPSycqJdfidveETZsEE1kxhwZLTiB8AhJz3RUwWi, fox_address: 3A8ihHWzfiN3JjqDkUVcFaEp8gwzkc57M45RAgTbjVCM, fox_owner: Cy5DhqzkYsxk8kuq43SGhtQs2RpeJoN7mYZEEGs3a3Gj
+Mission result inserted successfully: null
+blocktime: 1720971792
+Found thawAccount with mint address: 8qZST69zTM2yi9hrr1iomz2vKbb1ZQYxNdnrjivhxQSt
+Validated fox address: 8qZST69zTM2yi9hrr1iomz2vKbb1ZQYxNdnrjivhxQSt
+Final extracted addresses - Fox: 8qZST69zTM2yi9hrr1iomz2vKbb1ZQYxNdnrjivhxQSt, Den: null
+Calculating powers for fox_address: 8qZST69zTM2yi9hrr1iomz2vKbb1ZQYxNdnrjivhxQSt, den_address: null
+Inserting mission result for signature: 3REYFfG15NYxNPhUeELXQSsFA6ZewVg4fTjV4phKRbV9LxRnmn57Ks7jKxYvjz8WiDQDBTCbcYEtWgoSaXBPKa9i, fox_address: 8qZST69zTM2yi9hrr1iomz2vKbb1ZQYxNdnrjivhxQSt, fox_owner: Cy5DhqzkYsxk8kuq43SGhtQs2RpeJoN7mYZEEGs3a3Gj
+Mission result inserted successfully: null
+blocktime: 1720971788
+Found thawAccount with mint address: DQEUZ7ZkjLGjpvpaVWXF4vjm7hqAzXVRXgF8tJK2tun3
+Validated fox address: DQEUZ7ZkjLGjpvpaVWXF4vjm7hqAzXVRXgF8tJK2tun3
+Found thawAccount with mint address: CxNmf9YiiNxx7NKHR6B1EQX54YUWNHyRNZHT7kS1pv7f
+Address CxNmf9YiiNxx7NKHR6B1EQX54YUWNHyRNZHT7kS1pv7f is not a fox: JSON object requested, multiple (or no) rows returned
+Validated den address: CxNmf9YiiNxx7NKHR6B1EQX54YUWNHyRNZHT7kS1pv7f
+Final extracted addresses - Fox: DQEUZ7ZkjLGjpvpaVWXF4vjm7hqAzXVRXgF8tJK2tun3, Den: CxNmf9YiiNxx7NKHR6B1EQX54YUWNHyRNZHT7kS1pv7f
+Calculating powers for fox_address: DQEUZ7ZkjLGjpvpaVWXF4vjm7hqAzXVRXgF8tJK2tun3, den_address: CxNmf9YiiNxx7NKHR6B1EQX54YUWNHyRNZHT7kS1pv7f
+Inserting mission result for signature: 49YVRaaLhBu87aDsxFmYdnH4YyxG5GmwhWiaKTeyszAm6qFdJsCjF35HDwi46w5ypMjTXPtqoiFrC3uWjo2FGzMY, fox_address: DQEUZ7ZkjLGjpvpaVWXF4vjm7hqAzXVRXgF8tJK2tun3, fox_owner: Cy5DhqzkYsxk8kuq43SGhtQs2RpeJoN7mYZEEGs3a3Gj
+Mission result for signature 49YVRaaLhBu87aDsxFmYdnH4YyxG5GmwhWiaKTeyszAm6qFdJsCjF35HDwi46w5ypMjTXPtqoiFrC3uWjo2FGzMY already exists. Skipping insertion.
+blocktime: 1720971788
+Found thawAccount with mint address: BP6sxurWzYeAkiuhXGv7oiLHK2USecLBX5yGYeLpsHJ5
+Validated fox address: BP6sxurWzYeAkiuhXGv7oiLHK2USecLBX5yGYeLpsHJ5
+Final extracted addresses - Fox: BP6sxurWzYeAkiuhXGv7oiLHK2USecLBX5yGYeLpsHJ5, Den: null
+Calculating powers for fox_address: BP6sxurWzYeAkiuhXGv7oiLHK2USecLBX5yGYeLpsHJ5, den_address: null
+Inserting mission result for signature: 5te3XiqbrNfvodzSJBQuR4BWnxUgnihunVTi96CRdPdwjZU8zidqjc7ttnukfqfRMNcaHNFQkHpz8HggVWmTvsL3, fox_address: BP6sxurWzYeAkiuhXGv7oiLHK2USecLBX5yGYeLpsHJ5, fox_owner: Cy5DhqzkYsxk8kuq43SGhtQs2RpeJoN7mYZEEGs3a3Gj
+Mission result for signature 5te3XiqbrNfvodzSJBQuR4BWnxUgnihunVTi96CRdPdwjZU8zidqjc7ttnukfqfRMNcaHNFQkHpz8HggVWmTvsL3 already exists. Skipping insertion.
+blocktime: 1720971787
+Found thawAccount with mint address: 4WB6zShWaJtSbc1oFnjfz54vXnCKfbDEFNJSYuBtcLsg
+Address 4WB6zShWaJtSbc1oFnjfz54vXnCKfbDEFNJSYuBtcLsg is not a fox: JSON object requested, multiple (or no) rows returned
+Validated den address: 4WB6zShWaJtSbc1oFnjfz54vXnCKfbDEFNJSYuBtcLsg
+Found thawAccount with mint address: 69r3wUyKBZqoGwMgFjFu8DnYK62KbX4BVEUm8BRfDpca
+Validated fox address: 69r3wUyKBZqoGwMgFjFu8DnYK62KbX4BVEUm8BRfDpca
+Final extracted addresses - Fox: 69r3wUyKBZqoGwMgFjFu8DnYK62KbX4BVEUm8BRfDpca, Den: 4WB6zShWaJtSbc1oFnjfz54vXnCKfbDEFNJSYuBtcLsg
+Calculating powers for fox_address: 69r3wUyKBZqoGwMgFjFu8DnYK62KbX4BVEUm8BRfDpca, den_address: 4WB6zShWaJtSbc1oFnjfz54vXnCKfbDEFNJSYuBtcLsg
+Inserting mission result for signature: 5Hw9acRVWqtSfyy7h7Mj3MdFpAeCNRsisZTzZwdBygua2iCi9SQaRxvmPerNzLPaPM6cnGf5QaF1L2Jy6vt33hFf, fox_address: 69r3wUyKBZqoGwMgFjFu8DnYK62KbX4BVEUm8BRfDpca, fox_owner: Cy5DhqzkYsxk8kuq43SGhtQs2RpeJoN7mYZEEGs3a3Gj
+Mission result inserted successfully: null
+blocktime: 1720940117
+Found thawAccount with mint address: AXHZgVRa5Hyuysr92iwh4HD1vogBNw7R3qfRLqWX2BD3
+Validated fox address: AXHZgVRa5Hyuysr92iwh4HD1vogBNw7R3qfRLqWX2BD3
+Final extracted addresses - Fox: AXHZgVRa5Hyuysr92iwh4HD1vogBNw7R3qfRLqWX2BD3, Den: null
+Calculating powers for fox_address: AXHZgVRa5Hyuysr92iwh4HD1vogBNw7R3qfRLqWX2BD3, den_address: null
+Inserting mission result for signature: 5Vj3MDbCzfrJd4dWpdGtrb54gVHYysSDLq86oLYxZpnp5bfFtRwyF5DWyWArzsc53P9Euf87GhtxNTXMhats6iFM, fox_address: AXHZgVRa5Hyuysr92iwh4HD1vogBNw7R3qfRLqWX2BD3, fox_owner: 7pXE6si8UXotbaKk8YZw8jgZ1y4qEnLkwpL2hcLU7MXh
+Mission result inserted successfully: null
+blocktime: 1720940117
+Found thawAccount with mint address: EaM4yYudN79VtTpRsaJvvTcgyLDUrPgbsaa1uRUkcfFs
+Validated fox address: EaM4yYudN79VtTpRsaJvvTcgyLDUrPgbsaa1uRUkcfFs
+Final extracted addresses - Fox: EaM4yYudN79VtTpRsaJvvTcgyLDUrPgbsaa1uRUkcfFs, Den: null
+Calculating powers for fox_address: EaM4yYudN79VtTpRsaJvvTcgyLDUrPgbsaa1uRUkcfFs, den_address: null
+Inserting mission result for signature: wfn5QhtJXKv14jW2YZFVrnnaLppAqrY4iYTMG2YK8iFbQvnyNd4q3Ci5n8C5Pz3AZnBJHvvjUBi7kxSENajNk43, fox_address: EaM4yYudN79VtTpRsaJvvTcgyLDUrPgbsaa1uRUkcfFs, fox_owner: 7pXE6si8UXotbaKk8YZw8jgZ1y4qEnLkwpL2hcLU7MXh
+Mission result inserted successfully: null
+blocktime: 1720933466
+Found thawAccount with mint address: 8GkMHPca7SXjdQxa6K12FERvyaN3hCoVUaNoWeK2neCN
+Validated fox address: 8GkMHPca7SXjdQxa6K12FERvyaN3hCoVUaNoWeK2neCN
+Final extracted addresses - Fox: 8GkMHPca7SXjdQxa6K12FERvyaN3hCoVUaNoWeK2neCN, Den: null
+Calculating powers for fox_address: 8GkMHPca7SXjdQxa6K12FERvyaN3hCoVUaNoWeK2neCN, den_address: null
+Inserting mission result for signature: 2cMBnagxdUg5A98hPogk1K8t9w4M2BLiYEYHeqSAS4m8Fm6g3Amb6UDgXqEA1RXrqmxkqGT7a9nLNbqv4HuJWK54, fox_address: 8GkMHPca7SXjdQxa6K12FERvyaN3hCoVUaNoWeK2neCN, fox_owner: SbH5PfkfguKa6ipkefUEdq78pgUWXj1frNBGFEPReiz
+Mission result inserted successfully: null
+blocktime: 1720918867
+Found thawAccount with mint address: EVdF4Lq8Rbh3QzHPwYt73yjhcYgop3S8yh4AQzPwooyL
+Validated fox address: EVdF4Lq8Rbh3QzHPwYt73yjhcYgop3S8yh4AQzPwooyL
+Final extracted addresses - Fox: EVdF4Lq8Rbh3QzHPwYt73yjhcYgop3S8yh4AQzPwooyL, Den: null
+Calculating powers for fox_address: EVdF4Lq8Rbh3QzHPwYt73yjhcYgop3S8yh4AQzPwooyL, den_address: null
+Inserting mission result for signature: 4LZnZzJuF1eTSQR84J5iCrveaDgsXaEi3nsrLBz7jZNdFYDjVaoukccw1PUKC6GAEcgcmCZdxHwUye85yiYrWU5R, fox_address: EVdF4Lq8Rbh3QzHPwYt73yjhcYgop3S8yh4AQzPwooyL, fox_owner: BhQV8LgnYSiH9gkUzjbV1SGr31DJMh46JQYaPWvx1pp1
+Mission result inserted successfully: null
+blocktime: 1720918867
+Found thawAccount with mint address: DM97hPcDBtymcBvrHQC8wDbeemZjk8ZfBfHPVgrBgxs
+Validated fox address: DM97hPcDBtymcBvrHQC8wDbeemZjk8ZfBfHPVgrBgxs
+Final extracted addresses - Fox: DM97hPcDBtymcBvrHQC8wDbeemZjk8ZfBfHPVgrBgxs, Den: null
+Calculating powers for fox_address: DM97hPcDBtymcBvrHQC8wDbeemZjk8ZfBfHPVgrBgxs, den_address: null
+Inserting mission result for signature: 4J6QFdz3ArPBMuBohzGggM6abheb6e39itDPBipF55FhPtxA4uqraSZ1BS4vGK21ZpdX7T7MhkpGws6UGpugV1o9, fox_address: DM97hPcDBtymcBvrHQC8wDbeemZjk8ZfBfHPVgrBgxs, fox_owner: BhQV8LgnYSiH9gkUzjbV1SGr31DJMh46JQYaPWvx1pp1
+Mission result inserted successfully: null
+blocktime: 1720918865
+Found thawAccount with mint address: B2vZc6uSSwiqc2LJHnY5GhSJreGccdv5zWWgitZGeo89
+Validated fox address: B2vZc6uSSwiqc2LJHnY5GhSJreGccdv5zWWgitZGeo89
+Final extracted addresses - Fox: B2vZc6uSSwiqc2LJHnY5GhSJreGccdv5zWWgitZGeo89, Den: null
+Calculating powers for fox_address: B2vZc6uSSwiqc2LJHnY5GhSJreGccdv5zWWgitZGeo89, den_address: null
+Inserting mission result for signature: NWCSf88aNHbe8Kt7pdGk8HVq3oGpcGf2eE125K8UHE9EG3HrrRVsBWDkYhBE9QfZdhsQjDiT2iFvdVXKHYiajgq, fox_address: B2vZc6uSSwiqc2LJHnY5GhSJreGccdv5zWWgitZGeo89, fox_owner: BhQV8LgnYSiH9gkUzjbV1SGr31DJMh46JQYaPWvx1pp1
+Mission result inserted successfully: null
+blocktime: 1720918865
+Found thawAccount with mint address: EkexpYkVNqNtvNih2cgAHJq4ucWmxFTviqqfwLdhmuLC
+Validated fox address: EkexpYkVNqNtvNih2cgAHJq4ucWmxFTviqqfwLdhmuLC
+Final extracted addresses - Fox: EkexpYkVNqNtvNih2cgAHJq4ucWmxFTviqqfwLdhmuLC, Den: null
+Calculating powers for fox_address: EkexpYkVNqNtvNih2cgAHJq4ucWmxFTviqqfwLdhmuLC, den_address: null
+Inserting mission result for signature: 5PRih7GK8PS9AxXYkG9V2yRrXf1SVbWeNsPJEc9W8Mrs8QD3FiGRGiTNBtya5jP3bwyZ3z3MDPGQiuz1szcxVJ46, fox_address: EkexpYkVNqNtvNih2cgAHJq4ucWmxFTviqqfwLdhmuLC, fox_owner: BhQV8LgnYSiH9gkUzjbV1SGr31DJMh46JQYaPWvx1pp1
+Mission result inserted successfully: null
+^C

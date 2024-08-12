@@ -1,11 +1,10 @@
 import dotenv from 'dotenv';
 import { supabase } from '../utils/supabaseClient.js';
-import { readFameLevels } from '../utils/readFameLevels.js';
+import { fameLevels } from '../utils/readFameLevels'; // Adjust the path as needed
 import { MissionResultProcessor } from '../processors/MissionResultProcessor.js';
 dotenv.config();
 async function main() {
     try {
-        const fameLevels = await readFameLevels();
         // Ignore list for mission addresses
         const ignoreAddresses = [
             'G9HdcXk39uDFyXynmTCE4XBNUcZykTmSyLc4wXKJviH',

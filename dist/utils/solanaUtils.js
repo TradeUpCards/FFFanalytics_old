@@ -1,9 +1,14 @@
 // solanaUtils.js
 import { Connection, Keypair, PublicKey } from '@solana/web3.js';
 import { AnchorProvider, Program, setProvider } from '@project-serum/anchor';
-import { IDL } from '../lib/idl/missionsIdl.js'; // Update the path if necessary
+import { IDL } from '../lib/idl/missionsIdl'; // Update the path if necessary
 import dotenv from 'dotenv';
-import { insertFoxSnapshotsIntoDatabase } from './supabaseUtils.js';
+import { insertFoxSnapshotsIntoDatabase } from './supabaseUtils';
+import { processEndMission, processStartMission } from './missionUtils'; // Adjust imports as needed
+import { extractTrxTypes, isEndMissionTransaction, isStartMissionTransaction } from '../extractors/index'; // Adjust imports as needed
+import { insertOtherTransaction } from './supabaseUtils'; // Adjust imports as needed
+import { fameLevels } from '../utils/readFameLevels'; // Adjust the path as needed
+import { supabase } from './supabaseClient';
 dotenv.config();
 // Validate that the environment variables are set
 const HELIUS_API_KEY = process.env.HELIUS_API_KEY;
@@ -285,3 +290,66 @@ export const combineFoxData = (foxAccounts, foxUpgrades, missionAccounts) => {
         return combinedData;
     });
 };
+// Export the getTransaction function
+export async function getTransaction(signature) {
+    const payload = {
+        jsonrpc: "2.0",
+        id: 1,
+        method: "getTransaction",
+        params: [
+            signature,
+            {
+                encoding: "jsonParsed",
+                maxSupportedTransactionVersion: 0 // Adding this parameter
+            }
+        ]
+    };
+    try {
+        const response = await fetch(HELIUS_RPC_URL, {
+            method: 'POST',
+            headers: { 'Content-Type': 'application/json' },
+            body: JSON.stringify(payload)
+        });
+        const result = await response.json();
+        console.log("Transaction result:", result);
+        return result.result;
+    }
+    catch (error) {
+        console.error("Error fetching transaction:", error);
+        return null;
+    }
+}
+export async function checkForMissionTrx(signature) {
+    try {
+        // Fetch the transaction details using the signature
+        const transaction = await getTransaction(signature);
+        if (transaction) {
+            // Extract necessary details from the transaction
+            const logMessages = transaction.meta.logMessages;
+            const trxTypes = extractTrxTypes(transaction.meta.innerInstructions || []);
+            console.log(`Transaction types: ${trxTypes}`);
+            // Determine the type of transaction and process accordingly
+            if (isEndMissionTransaction(logMessages)) {
+                await processEndMission(transaction, supabase, fameLevels);
+                return true;
+            }
+            else if (isStartMissionTransaction(logMessages)) {
+                await processStartMission(transaction, supabase, fameLevels);
+                return true;
+            }
+            else {
+                // Log non-EndMission and non-StartMission transactions
+                await insertOtherTransaction(signature, trxTypes);
+                return false;
+            }
+        }
+        else {
+            console.log(`Transaction not found for signature: ${signature}`);
+            return false;
+        }
+    }
+    catch (error) {
+        console.error(`Error checking transaction type for signature ${signature}:`, error);
+        return false;
+    }
+}

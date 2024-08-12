@@ -9,6 +9,8 @@ import {
     extractTokenBalanceChanges, isEndMissionTransaction 
 } from '../extractors/index';
 import { determineFameLevel } from '../utils/determineFameLevel';
+import { fameLevels } from '../utils/readFameLevels';
+import { getTransaction } from '../utils/solanaUtils';
 
 dotenv.config();
 
@@ -22,35 +24,8 @@ if (!HELIUS_API_KEY) {
 }
 const HELIUS_RPC_URL = `https://mainnet.helius-rpc.com/?api-key=${HELIUS_API_KEY}`;
 
-const fameLevels: Record<number, number> = {
-    // Define fame levels here
-};
-
-async function getTransaction(signature: string): Promise<Transaction | null> {
-    const payload = {
-        jsonrpc: "2.0",
-        id: 1,
-        method: "getTransaction",
-        params: [
-            signature,
-            {
-                encoding: "jsonParsed"
-            }
-        ]
-    };
-
-    const response = await fetch(HELIUS_RPC_URL, {
-        method: 'POST',
-        headers: { 'Content-Type': 'application/json' },
-        body: JSON.stringify(payload)
-    });
-
-    const result = await response.json() as RpcResponse<Transaction>;
-    return result.result;
-}
-
 async function testTransaction() {
-    const signature = '3gNHgLKibAB74asPgJdis5bp2LecTtxTeowecGTJQeTanphbA5rj4muXJjxAWaVWTw4fmFTAsVT7mApdqgSLFs6V';
+    const signature = '3rzEn2BM17vyDrBGeF9s6P4gv9ifvoLKHjt9KsNBmup2JZMWU4ZDM5DuHvxiv1CFKW8dVAGFF7Nuz2wKWfvrLv2w';
     const transaction = await getTransaction(signature);
 
     if (!transaction) {

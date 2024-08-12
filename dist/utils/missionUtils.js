@@ -1,9 +1,8 @@
 import { isEndMissionTransaction, isStartMissionTransaction, extractAddresses, extractFoxOwner, extractFameBefore, extractFameAfter, extractMissionFame, extractTier, extractMissionResult, extractDenBonus, extractChestsBase, extractTokenBalanceChanges, extractFame } from '../extractors/index';
 import { determineFameLevel } from '../utils/determineFameLevel';
-import { readFameLevels } from '../utils/readFameLevels'; // Import the function to read fame levels from JSON
+import { fameLevels } from '../utils/readFameLevels'; // Adjust the path as needed
 // Function to process a transaction and extract relevant mission event details
 export async function processMissionEvent(transaction, supabase) {
-    const fameLevels = await readFameLevels(); // Load fame levels from the JSON file
     const { logMessages, innerInstructions, preTokenBalances, postTokenBalances, err } = transaction.meta;
     if (err) {
         console.log(`Transaction failed. Skipping.`);
@@ -19,12 +18,15 @@ export async function processMissionEvent(transaction, supabase) {
     return null;
 }
 // Function to process and decode the endMissionv2 transaction
-async function processEndMission(transaction, supabase, fameLevels) {
+export async function processEndMission(transaction, supabase, fameLevels) {
     const { logMessages, innerInstructions, preTokenBalances, postTokenBalances } = transaction.meta;
     const blocktime = transaction.blockTime;
     const signature = transaction.transaction.signatures[0];
     // Extract pubkey strings from accountKeys
-    const accountKeys = transaction.transaction.message.accountKeys.map(key => key.pubkey);
+    const accountKeys = transaction.transaction.message.accountKeys;
+    console.log('Processing EndMissionv2 transaction:', signature);
+    console.log('Inner Instructions:', innerInstructions);
+    console.log('Account Keys:', accountKeys);
     const { fox_address, den_address, mission_address, fox_id, fox_collection } = await extractAddresses(innerInstructions, accountKeys, supabase);
     const fox_owner = extractFoxOwner(innerInstructions, true);
     console.log(`Extracted addresses - Fox: ${fox_address}, Den: ${den_address}, Fox ID: ${fox_id}, Fox Collection: ${fox_collection}, Mission: ${mission_address}`);
@@ -93,12 +95,15 @@ async function processEndMission(transaction, supabase, fameLevels) {
     return missionResult;
 }
 // Function to process and decode the StartMission transaction
-async function processStartMission(transaction, supabase, fameLevels) {
+export async function processStartMission(transaction, supabase, fameLevels) {
     const { logMessages, innerInstructions } = transaction.meta;
     const blocktime = transaction.blockTime;
     const signature = transaction.transaction.signatures[0];
     // Extract pubkey strings from accountKeys
-    const accountKeys = transaction.transaction.message.accountKeys.map(key => key.pubkey);
+    const accountKeys = transaction.transaction.message.accountKeys;
+    console.log('Processing EndMissionv2 transaction:', signature);
+    console.log('Inner Instructions:', innerInstructions);
+    console.log('Account Keys:', accountKeys);
     const { fox_address, den_address, mission_address, fox_id, fox_collection } = await extractAddresses(innerInstructions, accountKeys, supabase);
     const fox_owner = extractFoxOwner(innerInstructions, false);
     console.log(`Extracted addresses - Fox: ${fox_address}, Den: ${den_address}, Fox ID: ${fox_id}, Fox Collection: ${fox_collection}, Mission: ${mission_address}`);
@@ -141,7 +146,7 @@ async function processStartMission(transaction, supabase, fameLevels) {
     return missionSend;
 }
 // Utility function to fetch fame levels
-async function getMissionAddress(accountKeys, supabase) {
+export async function getMissionAddress(accountKeys, supabase) {
     const { data: missions, error } = await supabase
         .from('missions')
         .select('address');
@@ -165,7 +170,7 @@ async function calculatePowers(fox_address, den_address, fame_before, fox_collec
             console.error(`Error fetching fox data for fox_address: ${fox_address}, fox_collection: ${fox_collection}`);
             throw new Error(`Error fetching fox data: ${foxError ? foxError.message : 'No data found'}`);
         }
-        const fameLevel = determineFameLevel(fame_before, await readFameLevels());
+        const fameLevel = determineFameLevel(fame_before, fameLevels);
         fox_power = Math.floor(fameLevel * foxData.score);
     }
     if (den_address) {

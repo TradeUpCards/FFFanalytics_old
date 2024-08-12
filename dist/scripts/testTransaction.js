@@ -1,8 +1,9 @@
 import dotenv from 'dotenv';
-import fetch from 'node-fetch';
 import { createClient } from '@supabase/supabase-js';
 import { extractFoxOwner, extractAddresses, extractMissionResult, extractDenBonus, extractFameBefore, extractFameAfter, extractMissionFame, extractChestsBase, extractTier, extractTokenBalanceChanges } from '../extractors/index';
 import { determineFameLevel } from '../utils/determineFameLevel';
+import { fameLevels } from '../utils/readFameLevels';
+import { getTransaction } from '../utils/solanaUtils';
 dotenv.config();
 const supabaseUrl = process.env.SUPABASE_URL || '';
 const supabaseKey = process.env.SUPABASE_KEY || '';
@@ -12,31 +13,8 @@ if (!HELIUS_API_KEY) {
     throw new Error("HELIUS_API_KEY is not set in the environment variables.");
 }
 const HELIUS_RPC_URL = `https://mainnet.helius-rpc.com/?api-key=${HELIUS_API_KEY}`;
-const fameLevels = {
-// Define fame levels here
-};
-async function getTransaction(signature) {
-    const payload = {
-        jsonrpc: "2.0",
-        id: 1,
-        method: "getTransaction",
-        params: [
-            signature,
-            {
-                encoding: "jsonParsed"
-            }
-        ]
-    };
-    const response = await fetch(HELIUS_RPC_URL, {
-        method: 'POST',
-        headers: { 'Content-Type': 'application/json' },
-        body: JSON.stringify(payload)
-    });
-    const result = await response.json();
-    return result.result;
-}
 async function testTransaction() {
-    const signature = '3gNHgLKibAB74asPgJdis5bp2LecTtxTeowecGTJQeTanphbA5rj4muXJjxAWaVWTw4fmFTAsVT7mApdqgSLFs6V';
+    const signature = '3rzEn2BM17vyDrBGeF9s6P4gv9ifvoLKHjt9KsNBmup2JZMWU4ZDM5DuHvxiv1CFKW8dVAGFF7Nuz2wKWfvrLv2w';
     const transaction = await getTransaction(signature);
     if (!transaction) {
         console.error('Transaction not found');
@@ -46,7 +24,7 @@ async function testTransaction() {
     const { logMessages, innerInstructions, preTokenBalances, postTokenBalances } = transaction.meta;
     const blocktime = transaction.blockTime;
     // Extract pubkey strings from accountKeys
-    const accountKeys = transaction.transaction.message.accountKeys.map(key => key.pubkey);
+    const accountKeys = transaction.transaction.message.accountKeys;
     const { fox_address, den_address, mission_address, fox_id, fox_collection } = await extractAddresses(innerInstructions, accountKeys, supabase);
     const fox_owner = extractFoxOwner(innerInstructions);
     console.log(`Final extracted addresses - Fox: ${fox_address}, Den: ${den_address}, Fox ID: ${fox_id}, Fox Collection: ${fox_collection}, Mission: ${mission_address}`);
